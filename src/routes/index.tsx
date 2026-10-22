@@ -732,23 +732,6 @@ function MenuSection({
                     </p>
                   )}
                 </div>
-
-                {/* Flavor Pills */}
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[#4A0E2E]/10">
-                  {flavorNames.map((flavor, fIdx) => (
-                    <span
-                      key={fIdx}
-                      onClick={() => setMojitoIndex(fIdx)}
-                      className={`text-[11px] px-2.5 py-1 rounded-full font-semibold cursor-pointer transition-all ${
-                        mojitoIndex === fIdx
-                          ? 'bg-[#4A0E2E] text-[#F5C842]'
-                          : 'bg-[#FDF6E3] text-[#4A0E2E]/80 hover:bg-[#F5C842]/20'
-                      }`}
-                    >
-                      {flavor}
-                    </span>
-                  ))}
-                </div>
               </div>
             </motion.div>
           )}
