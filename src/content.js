@@ -43,8 +43,7 @@ export const siteContent = {
         tag: "Refreshing Sips",
         name: "Fresh Mojitos",
         price: "", // Keep empty to hide price pill until real prices are set
-        description:
-          "Crisp, fizzy mocktails crafted with hand-crushed mint, tangy lime, and festival-special cooling syrups. Available in three rotating sensations: Cool Mint, Juicy Watermelon, and Nostalgic Kala Khatta.",
+        description: "",
         flavors: ["Crisp Mint", "Watermelon", "Kala Khatta"],
         images: ["/src/assets/mojito.jpeg", "/src/assets/mojito2.jpeg", "/src/assets/mojito3.jpeg"],
       },
@@ -53,8 +52,7 @@ export const siteContent = {
         tag: "Crunchy & Savory",
         name: "Loaded Chips Chaat",
         price: "", // Keep empty to hide price pill
-        description:
-          "Golden crunchy potato crisps smothered in spiced yogurt, zesty mint & tamarind chutneys, diced red onions, fresh juicy tomatoes, and a mountain of crispy nylon sev.",
+        description: "",
         image: "/src/assets/chaat.jpeg",
       },
       {
@@ -62,8 +60,7 @@ export const siteContent = {
         tag: "Authentic Sweet",
         name: "Traditional Kharwas",
         price: "", // Keep empty to hide price pill
-        description:
-          "Silky smooth, melt-in-mouth steamed colostrum milk delicacy prepared the authentic Maharashtrian way, fragranced with hand-ground green cardamom, saffron, and nutmeg.",
+        description: "",
         image: "/src/assets/kharbas.jpeg",
       },
     ],

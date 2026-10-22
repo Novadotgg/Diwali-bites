@@ -723,12 +723,14 @@ function MenuSection({
               {/* Card Body */}
               <div className="p-6 flex flex-col flex-grow justify-between">
                 <div>
-                  <h3 className="font-['Rozha_One'] text-2xl text-[#4A0E2E] mb-2 group-hover:text-[#6B1F4A] transition-colors">
+                  <h3 className="font-['Rozha_One'] text-2xl text-[#4A0E2E] group-hover:text-[#6B1F4A] transition-colors">
                     {mojitoItem.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#4A0E2E]/75 leading-relaxed font-['Manrope'] mb-4">
-                    {mojitoItem.description}
-                  </p>
+                  {mojitoItem.description && (
+                    <p className="text-xs sm:text-sm text-[#4A0E2E]/75 leading-relaxed font-['Manrope'] mt-2 mb-4">
+                      {mojitoItem.description}
+                    </p>
+                  )}
                 </div>
 
                 {/* Flavor Pills */}
@@ -789,12 +791,14 @@ function MenuSection({
               {/* Card Body */}
               <div className="p-6 flex flex-col flex-grow justify-between">
                 <div>
-                  <h3 className="font-['Rozha_One'] text-2xl text-[#4A0E2E] mb-2 group-hover:text-[#6B1F4A] transition-colors">
+                  <h3 className="font-['Rozha_One'] text-2xl text-[#4A0E2E] group-hover:text-[#6B1F4A] transition-colors">
                     {chaatItem.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#4A0E2E]/75 leading-relaxed font-['Manrope'] mb-4">
-                    {chaatItem.description}
-                  </p>
+                  {chaatItem.description && (
+                    <p className="text-xs sm:text-sm text-[#4A0E2E]/75 leading-relaxed font-['Manrope'] mt-2 mb-4">
+                      {chaatItem.description}
+                    </p>
+                  )}
                 </div>
                 <div className="pt-3 border-t border-[#4A0E2E]/10 flex items-center gap-2 text-xs font-semibold text-[#4A0E2E]/70">
                   <span className="w-2 h-2 rounded-full bg-[#F5C842]" />
@@ -842,12 +846,14 @@ function MenuSection({
               {/* Card Body */}
               <div className="p-6 flex flex-col flex-grow justify-between">
                 <div>
-                  <h3 className="font-['Rozha_One'] text-2xl text-[#4A0E2E] mb-2 group-hover:text-[#6B1F4A] transition-colors">
+                  <h3 className="font-['Rozha_One'] text-2xl text-[#4A0E2E] group-hover:text-[#6B1F4A] transition-colors">
                     {kharwasItem.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#4A0E2E]/75 leading-relaxed font-['Manrope'] mb-4">
-                    {kharwasItem.description}
-                  </p>
+                  {kharwasItem.description && (
+                    <p className="text-xs sm:text-sm text-[#4A0E2E]/75 leading-relaxed font-['Manrope'] mt-2 mb-4">
+                      {kharwasItem.description}
+                    </p>
+                  )}
                 </div>
                 <div className="pt-3 border-t border-[#4A0E2E]/10 flex items-center gap-2 text-xs font-semibold text-[#4A0E2E]/70">
                   <span className="w-2 h-2 rounded-full bg-[#F5C842]" />
