@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@theme {
+  --color-plum-deep: var(--plum-deep);
+  --color-plum: var(--plum);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-cream: var(--cream);
+  --color-marigold: var(--marigold);
+
+  --font-display: "Rozha One", serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+:root {
+  --plum-deep: oklch(0.24 0.11 350); /* #4A0E2E */
+  --plum: oklch(0.32 0.14 350);      /* #6B1F4A */
+  --gold: oklch(0.72 0.16 85);       /* #D4A017 */
+  --gold-soft: oklch(0.83 0.16 85);  /* #F5C842 */
+  --cream: oklch(0.97 0.02 90);      /* #FDF6E3 */
+  --marigold: oklch(0.75 0.19 65);   /* #F59E0B */
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: #4A0E2E;
+  color: #FDF6E3;
+}
+
+/* Custom Signature Utilities */
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFE79A 0%, #F5C842 35%, #D4A017 75%, #FDE087 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #F5C842 0%, #D4A017 100%);
+}
+
+.bg-plum-gradient {
+  background: linear-gradient(145deg, #4A0E2E 0%, #6B1F4A 55%, #3B0B24 100%);
+}
+
+.bg-cream-gradient {
+  background: linear-gradient(180deg, #FDF6E3 0%, #F8EED1 100%);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 30px rgba(245, 200, 66, 0.35), 0 0 60px rgba(212, 160, 23, 0.18);
+}
+
+.shadow-glow-sm {
+  box-shadow: 0 0 15px rgba(245, 200, 66, 0.25);
+}
+
+.shadow-card {
+  box-shadow: 0 25px 50px -12px rgba(45, 8, 28, 0.25), 0 0 0 1px rgba(212, 160, 23, 0.12);
+}
+
+.shadow-card-hover {
+  box-shadow: 0 30px 60px -15px rgba(45, 8, 28, 0.35), 0 0 30px rgba(245, 200, 66, 0.25), 0 0 0 1px rgba(245, 200, 66, 0.3);
+}
+
+/* Rangoli background pattern */
+.rangoli-bg {
+  background-image: radial-gradient(rgba(212, 160, 23, 0.14) 1.5px, transparent 1.5px),
+                    radial-gradient(rgba(107, 31, 74, 0.2) 1.5px, transparent 1.5px);
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
+}
+
+.rangoli-bg-cream {
+  background-image: radial-gradient(rgba(212, 160, 23, 0.22) 1.5px, transparent 1.5px),
+                    radial-gradient(rgba(74, 14, 46, 0.08) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+/* Animations */
+
+@keyframes flicker {
+  0%, 100% {
+    transform: scale(1) rotate(-1deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px rgba(245, 200, 66, 0.8));
+  }
+  25% {
+    transform: scale(1.08, 0.95) rotate(1.5deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(255, 230, 120, 0.95));
+  }
+  50% {
+    transform: scale(0.96, 1.05) rotate(-1deg);
+    opacity: 0.88;
+    filter: drop-shadow(0 0 5px rgba(212, 160, 23, 0.7));
+  }
+  75% {
+    transform: scale(1.04, 1.02) rotate(0.5deg);
+    opacity: 0.98;
+    filter: drop-shadow(0 0 8px rgba(245, 200, 66, 0.9));
+  }
+}
+
+.flicker {
+  animation: flicker 1.8s infinite ease-in-out;
+  transform-origin: center bottom;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(255, 225, 120, 0.9));
+  }
+}
+
+.twinkle {
+  animation: twinkle 2.4s infinite ease-in-out;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 40s linear infinite;
+}
+
+@keyframes wobble {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  20% {
+    transform: rotate(-8deg) scale(1.05);
+  }
+  40% {
+    transform: rotate(7deg) scale(1.05);
+  }
+  60% {
+    transform: rotate(-5deg) scale(1.03);
+  }
+  80% {
+    transform: rotate(4deg) scale(1.02);
+  }
+}
+
+.wobble {
+  animation: wobble 3s ease-in-out infinite;
+}
+
+/* Glassmorphism */
+.glass-plum {
+  background: rgba(74, 14, 46, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(245, 200, 66, 0.22);
+}
+
+.glass-plum-deep {
+  background: rgba(59, 11, 36, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 200, 66, 0.25);
+}
+
+/* Hide scrollbar for clean UI where needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
