@@ -9,6 +9,11 @@ export interface MenuItem {
   name: string;
   price: string;
   description: string;
+  category?: 'all' | 'mojitos' | 'chaat' | 'kharwas';
+  isVeg?: boolean;
+  highlightBadge?: string;
+  ingredients?: string[];
+  detailedStory?: string;
   image?: string;
   images?: string[];
   flavors?: string[];
@@ -18,6 +23,7 @@ export interface MysteryCard {
   id: number;
   title: string;
   teaser: string;
+  prizeHint?: string;
 }
 
 export interface SiteContent {
@@ -64,6 +70,7 @@ export interface SiteContent {
     timingLabel: string;
     timing: string;
     landmark: string;
+    mapUrl?: string;
   };
   footer: {
     brandName: string;
@@ -75,3 +82,4 @@ export interface SiteContent {
 }
 
 export const siteContent: SiteContent;
+

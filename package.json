@@ -10,11 +10,15 @@
   },
   "dependencies": {
     "@tanstack/react-router": "^1.120.20",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/three": "^0.186.0",
+    "canvas-confetti": "^1.9.4",
     "framer-motion": "^12.4.7",
     "lenis": "^1.1.20",
     "lucide-react": "^0.475.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.9",
