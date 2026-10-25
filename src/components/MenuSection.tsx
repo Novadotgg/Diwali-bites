@@ -9,13 +9,13 @@ import mojito1 from '../assets/mojito.jpeg'
 import mojito2 from '../assets/mojito2.jpeg'
 import mojito3 from '../assets/mojito3.jpeg'
 import chaatImg from '../assets/chaat.jpeg'
-import kharwasImg from '../assets/kharbas.jpeg'
+import dahiChaatImg from '../assets/dahichat.jpg'
 
 interface MenuSectionProps {
   onVisitStall: () => void
 }
 
-type CategoryType = 'all' | 'mojitos' | 'chaat' | 'kharwas'
+type CategoryType = 'all' | 'mojitos' | 'chaat' | 'dahichaat'
 
 export function MenuSection({ onVisitStall }: MenuSectionProps) {
   const [activeCategory, setActiveCategory] = useState<CategoryType>('all')
@@ -26,7 +26,7 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
   const mojitoImages = [mojito1, mojito2, mojito3]
   const mojitoItem = siteContent.menu.items.find((item) => item.id === 'fresh-mojitos')
   const chaatItem = siteContent.menu.items.find((item) => item.id === 'loaded-chips-chaat')
-  const kharwasItem = siteContent.menu.items.find((item) => item.id === 'traditional-kharwas')
+  const dahiChaatItem = siteContent.menu.items.find((item) => item.id === 'dahi-chaat')
 
   const flavorNames = mojitoItem?.flavors || ['Crisp Mint', 'Watermelon', 'Kala Khatta']
 
@@ -42,7 +42,7 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
     { id: 'all', label: 'All Delights (3)' },
     { id: 'mojitos', label: 'Fresh Mojitos' },
     { id: 'chaat', label: 'Loaded Chips Chaat' },
-    { id: 'kharwas', label: 'Traditional Kharwas' },
+    { id: 'dahichaat', label: 'Dahi Chaat' },
   ]
 
   const shouldShow = (cat: CategoryType) => {
@@ -193,12 +193,12 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
             />
           )}
 
-          {/* Card 3: Traditional Kharwas */}
-          {kharwasItem && shouldShow('kharwas') && (
+          {/* Card 3: Festive Dahi Chaat */}
+          {dahiChaatItem && shouldShow('dahichaat') && (
             <TiltCard
-              item={kharwasItem}
-              imageSrc={kharwasImg}
-              onCardClick={() => setSelectedItem(kharwasItem)}
+              item={dahiChaatItem}
+              imageSrc={dahiChaatImg}
+              onCardClick={() => setSelectedItem(dahiChaatItem)}
             />
           )}
         </div>

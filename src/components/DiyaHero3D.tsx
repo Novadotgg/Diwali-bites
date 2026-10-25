@@ -23,6 +23,7 @@ export function DiyaHero3D({ className = 'w-full h-full' }: DiyaHero3DProps) {
 
     const container = containerRef.current
     const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window)
+    let renderer: THREE.WebGLRenderer | null = null
 
     try {
       renderer = new THREE.WebGLRenderer({
@@ -45,7 +46,7 @@ export function DiyaHero3D({ className = 'w-full h-full' }: DiyaHero3DProps) {
     renderer.toneMappingExposure = 1.3
 
     // Gracefully handle mobile WebGL context loss
-    renderer.domElement.addEventListener('webglcontextlost', (e) => {
+    renderer.domElement.addEventListener('webglcontextlost', (e: Event) => {
       e.preventDefault()
       setHasWebGL(false)
     })

@@ -4,7 +4,7 @@ import mojito1 from './assets/mojito.jpeg'
 import mojito2 from './assets/mojito2.jpeg'
 import mojito3 from './assets/mojito3.jpeg'
 import chaatImg from './assets/chaat.jpeg'
-import kharwasImg from './assets/kharbas.jpeg'
+import dahiChaatImg from './assets/dahichat.jpg'
 import hamperImg from './assets/hamper.jpeg'
 
 export const siteContent = {
@@ -76,19 +76,19 @@ export const siteContent = {
         image: chaatImg,
       },
       {
-        id: "traditional-kharwas",
-        category: "kharwas",
-        tag: "Authentic Sweet",
-        name: "Traditional Kharwas",
-        price: "[PRICE]", // Edit here to set real price (e.g. "₹40") or leave as "[PRICE]"
+        id: "dahi-chaat",
+        category: "dahichaat",
+        tag: "Crispy & Tangy",
+        name: "Dahi Chaat",
+        price: "[PRICE]", // Edit here to set real price (e.g. "₹50") or leave as "[PRICE]"
         description:
-          "Authentic Maharashtrian steamed colostrum milk pudding infused with aromatic green cardamom, pure saffron strands, and gentle sweetness.",
+          "Crispy golden hollow puris filled with spiced potatoes, chilled creamy sweet yogurt, tangy tamarind chutney, spicy green mint sauce & crunchy sev.",
         detailedStory:
-          "Prepared following a time-honored family recipe. Steamed to velvety perfection so each bite melts delicately on your tongue. The true taste of festive nostalgia.",
+          "An all-time festival favorite! Crisp puris crowned with velvety chilled dahi, tangy date-tamarind chutney, spicy mint sauce, fine nylon sev, and juicy ruby pomegranate seeds. Every single bite is a burst of sweet, tangy, and crunchy festive joy.",
         isVeg: true,
-        highlightBadge: "Pure Tradition",
-        ingredients: ["Pure Colostrum Milk", "Cardamom (Elaichi)", "Kashmiri Saffron (Kesar)", "Organic Jaggery / Sugar", "Nutmeg Hint"],
-        image: kharwasImg,
+        highlightBadge: "Crowd Favorite",
+        ingredients: ["Crispy Puris", "Chilled Creamy Dahi", "Tangy Imli Chutney", "Zesty Hari Chutney", "Fine Nylon Sev", "Ruby Pomegranate", "Chaat Masala"],
+        image: dahiChaatImg,
       },
     ],
   },

@@ -181,7 +181,7 @@ export const professorsList: Professor[] = [
     "department": "General & Pharma Management",
     "image": "/professors/dr-dileep-pawar.jpg",
     "gender": "male",
-    "specialMessage": "Respected Dr. Dileep, proven tonic for health and festive cheer: fresh Kharvas and chilled Mojito! Please visit us at Stall No. 4."
+    "specialMessage": "Respected Dr. Dileep, proven tonic for health and festive cheer: crispy tangy Dahi Chaat and chilled Mojito! Please visit us at Stall No. 4."
   },
   {
     "id": "ms-poorva-sane",
