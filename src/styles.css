@@ -13,6 +13,8 @@
   --font-display: "Rozha One", serif;
   --font-serif-festive: "Cinzel Decorative", "Rozha One", serif;
   --font-body: "Manrope", sans-serif;
+  --font-script: "Pacifico", cursive;
+  --font-handwriting: "Caveat", cursive;
 }
 
 :root {

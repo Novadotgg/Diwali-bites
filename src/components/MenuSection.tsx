@@ -5,44 +5,33 @@ import { siteContent, MenuItem } from '../content'
 import { TiltCard } from './TiltCard'
 import { ItemModal } from './ItemModal'
 
-import mojito1 from '../assets/mojito.jpeg'
-import mojito2 from '../assets/mojito2.jpeg'
-import mojito3 from '../assets/mojito3.jpeg'
+import mojitoImg from '../assets/mojito.jpeg'
 import chaatImg from '../assets/chaat.jpeg'
-import dahiChaatImg from '../assets/dahichat.jpg'
+import dahiChaatImg from '../assets/dahichat.jpeg'
+import bhelImg from '../assets/bhel.jpeg'
 
 interface MenuSectionProps {
   onVisitStall: () => void
 }
 
-type CategoryType = 'all' | 'mojitos' | 'chaat' | 'dahichaat'
+type CategoryType = 'all' | 'mojitos' | 'chaat' | 'dahichaat' | 'bhel'
 
 export function MenuSection({ onVisitStall }: MenuSectionProps) {
   const [activeCategory, setActiveCategory] = useState<CategoryType>('all')
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
-  const [mojitoIndex, setMojitoIndex] = useState(0)
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null)
 
-  const mojitoImages = [mojito1, mojito2, mojito3]
   const mojitoItem = siteContent.menu.items.find((item) => item.id === 'fresh-mojitos')
   const chaatItem = siteContent.menu.items.find((item) => item.id === 'loaded-chips-chaat')
   const dahiChaatItem = siteContent.menu.items.find((item) => item.id === 'dahi-chaat')
-
-  const flavorNames = mojitoItem?.flavors || ['Crisp Mint', 'Watermelon', 'Kala Khatta']
-
-  // Auto-cycle mojito images every 3s
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setMojitoIndex((prev) => (prev + 1) % mojitoImages.length)
-    }, 3200)
-    return () => clearInterval(timer)
-  }, [mojitoImages.length])
+  const bhelItem = siteContent.menu.items.find((item) => item.id === 'special-bhel')
 
   const categories: { id: CategoryType; label: string }[] = [
-    { id: 'all', label: 'All Delights (3)' },
+    { id: 'all', label: 'All Delights (4)' },
     { id: 'mojitos', label: 'Fresh Mojitos' },
-    { id: 'chaat', label: 'Loaded Chips Chaat' },
+    { id: 'chaat', label: 'Chips Chaat' },
     { id: 'dahichaat', label: 'Dahi Chaat' },
+    { id: 'bhel', label: 'Special Bhel' },
   ]
 
   const shouldShow = (cat: CategoryType) => {
@@ -170,16 +159,12 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
         </div>
 
         {/* 3D Tilt Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-          {/* Card 1: Fresh Mojitos (Bubbles badge + Carousel) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
+          {/* Card 1: Fresh Mojitos */}
           {mojitoItem && shouldShow('mojitos') && (
             <TiltCard
               item={mojitoItem}
-              imageSrc={mojitoImages[mojitoIndex]}
-              activeFlavorName={flavorNames[mojitoIndex]}
-              photoIndex={mojitoIndex}
-              totalPhotos={mojitoImages.length}
-              onPhotoDotClick={setMojitoIndex}
+              imageSrc={mojitoImg}
               onCardClick={() => setSelectedItem(mojitoItem)}
             />
           )}
@@ -199,6 +184,15 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
               item={dahiChaatItem}
               imageSrc={dahiChaatImg}
               onCardClick={() => setSelectedItem(dahiChaatItem)}
+            />
+          )}
+
+          {/* Card 4: Special Bhel */}
+          {bhelItem && shouldShow('bhel') && (
+            <TiltCard
+              item={bhelItem}
+              imageSrc={bhelImg}
+              onCardClick={() => setSelectedItem(bhelItem)}
             />
           )}
         </div>

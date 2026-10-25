@@ -1,10 +1,9 @@
 // Content file for Diwali Bites
 // Non-technical owners can edit any copy or price directly in this single file.
-import mojito1 from './assets/mojito.jpeg'
-import mojito2 from './assets/mojito2.jpeg'
-import mojito3 from './assets/mojito3.jpeg'
+import mojitoImg from './assets/mojito.jpeg'
 import chaatImg from './assets/chaat.jpeg'
-import dahiChaatImg from './assets/dahichat.jpg'
+import dahiChaatImg from './assets/dahichat.jpeg'
+import bhelImg from './assets/bhel.jpeg'
 import hamperImg from './assets/hamper.jpeg'
 
 export const siteContent = {
@@ -53,12 +52,12 @@ export const siteContent = {
         description:
           "Hand-muddled fresh garden mint, zesty lemons, chilled fizz, and signature festive syrup twists over crushed ice.",
         detailedStory:
-          "Nothing beats the Mandi crowd heat like a freshly shaken, chilled mojito. Three festive twists made right in front of you with real fruits and aromatic herbs.",
+          "Nothing beats the Mandi crowd heat like a freshly shaken, chilled mojito. Refreshing festive twists made right in front of you with real fruits, aromatic mint, and bubbly soda.",
         isVeg: true,
         highlightBadge: "Festival Bestseller",
         ingredients: ["Fresh Garden Mint", "Persian Lime", "Chilled Soda", "Festive Fruit Syrups", "Crushed Ice"],
-        flavors: ["Crisp Mint", "Watermelon", "Kala Khatta"],
-        images: [mojito1, mojito2, mojito3],
+        flavors: ["Crisp Mint", "Blue Ocean", "Kala Khatta"],
+        image: mojitoImg,
       },
       {
         id: "loaded-chips-chaat",
@@ -89,6 +88,21 @@ export const siteContent = {
         highlightBadge: "Crowd Favorite",
         ingredients: ["Crispy Puris", "Chilled Creamy Dahi", "Tangy Imli Chutney", "Zesty Hari Chutney", "Fine Nylon Sev", "Ruby Pomegranate", "Chaat Masala"],
         image: dahiChaatImg,
+      },
+      {
+        id: "special-bhel",
+        category: "bhel",
+        tag: "Tangy & Crunchy",
+        name: "Special Bhel",
+        price: "[PRICE]", // Edit here to set real price (e.g. "₹50") or leave as "[PRICE]"
+        description:
+          "Crispy puffed rice tossed with golden sev, diced onions, fresh tomatoes, coriander, and sweet & spicy date-tamarind chutneys.",
+        detailedStory:
+          "The quintessential street sensation of Diwali Mandi! Light, crunchy puffed rice tossed fresh to order with savory sev, crunchy papdi, roasted peanuts, tangy lemon juice, and our special sweet-and-spicy homemade chutneys. Perfect to munch while exploring the festivities.",
+        isVeg: true,
+        highlightBadge: "Campus Favorite",
+        ingredients: ["Crispy Puffed Rice (Murmura)", "Fine Nylon Sev", "Crunchy Papdi", "Sweet Tamarind Chutney", "Spicy Mint Chutney", "Fresh Chopped Onions & Tomatoes", "Roasted Peanuts", "Zesty Lemon Juice"],
+        image: bhelImg,
       },
     ],
   },
