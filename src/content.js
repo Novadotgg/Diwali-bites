@@ -1,5 +1,11 @@
 // Content file for Diwali Bites
 // Non-technical owners can edit any copy or price directly in this single file.
+import mojito1 from './assets/mojito.jpeg'
+import mojito2 from './assets/mojito2.jpeg'
+import mojito3 from './assets/mojito3.jpeg'
+import chaatImg from './assets/chaat.jpeg'
+import kharwasImg from './assets/kharbas.jpeg'
+import hamperImg from './assets/hamper.jpeg'
 
 export const siteContent = {
   brand: {
@@ -52,7 +58,7 @@ export const siteContent = {
         highlightBadge: "Festival Bestseller",
         ingredients: ["Fresh Garden Mint", "Persian Lime", "Chilled Soda", "Festive Fruit Syrups", "Crushed Ice"],
         flavors: ["Crisp Mint", "Watermelon", "Kala Khatta"],
-        images: ["/src/assets/mojito.jpeg", "/src/assets/mojito2.jpeg", "/src/assets/mojito3.jpeg"],
+        images: [mojito1, mojito2, mojito3],
       },
       {
         id: "loaded-chips-chaat",
@@ -67,7 +73,7 @@ export const siteContent = {
         isVeg: true,
         highlightBadge: "Must-Try Crunch",
         ingredients: ["Crispy Potato Wafers", "Tangy Imli Chutney", "Teekhi Hari Chutney", "Fresh Chopped Veggies", "Fine Nylon Sev"],
-        image: "/src/assets/chaat.jpeg",
+        image: chaatImg,
       },
       {
         id: "traditional-kharwas",
@@ -82,7 +88,7 @@ export const siteContent = {
         isVeg: true,
         highlightBadge: "Pure Tradition",
         ingredients: ["Pure Colostrum Milk", "Cardamom (Elaichi)", "Kashmiri Saffron (Kesar)", "Organic Jaggery / Sugar", "Nutmeg Hint"],
-        image: "/src/assets/kharbas.jpeg",
+        image: kharwasImg,
       },
     ],
   },
@@ -93,7 +99,7 @@ export const siteContent = {
     teaserTitle: "Something Exciting is Being Unwrapped...",
     teaserDescription:
       "Our team is cooking up carnival stalls, festive challenge games, and celebration gift hampers loaded with Diwali goodies for you and your squad. Reveal coming on event morning!",
-    hamperImage: "/src/assets/hamper.jpeg",
+    hamperImage: hamperImg,
     mysteryCards: [
       {
         id: 1,

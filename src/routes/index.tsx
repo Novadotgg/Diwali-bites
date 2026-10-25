@@ -22,8 +22,14 @@ function HomePage() {
   const [scrollProgress, setScrollProgress] = useState(0)
   const lenisRef = useRef<Lenis | null>(null)
 
-  // Initialize Lenis smooth scroll
+  // Initialize Lenis smooth scroll (desktop only to prevent mobile touch latency/jank)
   useEffect(() => {
+    const isTouch =
+      typeof window !== 'undefined' &&
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768)
+
+    if (isTouch) return
+
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -86,13 +92,27 @@ function HomePage() {
 
   const scrollTo = (href: string) => {
     setMobileMenuOpen(false)
+    document.body.style.overflow = ''
+
     const targetId = href.replace('#', '')
     const element = document.getElementById(targetId)
-    if (element && lenisRef.current) {
-      lenisRef.current.scrollTo(element, { offset: -70 })
-    } else if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+    if (!element) return
+
+    // Smooth scroll with header offset that works reliably across all mobile browsers
+    setTimeout(() => {
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(element, { offset: -70 })
+      } else {
+        const headerOffset = 70
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        })
+      }
+    }, 40)
   }
 
   return (

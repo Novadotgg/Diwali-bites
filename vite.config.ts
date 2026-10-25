@@ -9,6 +9,17 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-three': ['three'],
+          'vendor-motion': ['framer-motion'],
+        },
+      },
+    },
+  },
   server: {
     port: 3000,
     host: true,

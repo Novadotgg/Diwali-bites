@@ -1,14 +1,53 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { QRCodeSVG } from 'qrcode.react'
 import { MapPin, Calendar, Clock, Store, ArrowRight, GraduationCap } from 'lucide-react'
 import { siteContent } from '../content'
-import { DiyaHero3D } from './DiyaHero3D'
 import { MagneticButton } from './MagneticButton'
-import { ProfessorSelectModal } from './ProfessorSelectModal'
-import { Professor } from '../data/professors'
+import type { Professor } from '../data/professors'
 import heroBg from '../assets/hero-diyas.jpg'
+
+// Code-split heavy 3D canvas and modal data so initial mobile page paint is instant
+const DiyaHero3D = lazy(() => import('./DiyaHero3D').then((m) => ({ default: m.DiyaHero3D })))
+const ProfessorSelectModal = lazy(() =>
+  import('./ProfessorSelectModal').then((m) => ({ default: m.ProfessorSelectModal }))
+)
+
+function DiyaPlaceholder({ className = 'w-full h-full' }: { className?: string }) {
+  return (
+    <div className={`${className} flex items-center justify-center relative select-none pointer-events-none`}>
+      <div className="w-52 h-52 sm:w-64 sm:h-64 rounded-full bg-radial from-[#F5C842]/35 via-[#FF9800]/20 to-transparent blur-2xl animate-pulse" />
+      <svg
+        viewBox="0 0 200 200"
+        className="w-48 h-48 sm:w-60 sm:h-60 absolute drop-shadow-[0_0_30px_rgba(245,200,66,0.5)]"
+      >
+        <ellipse cx="100" cy="80" rx="22" ry="38" fill="url(#heroFlameGlow)" opacity="0.45" className="animate-pulse" />
+        <path d="M 100 32 C 118 64 120 90 100 106 C 80 90 82 64 100 32 Z" fill="url(#heroFlameGrad)" />
+        <path d="M 100 48 C 110 70 111 86 100 98 C 89 86 90 70 100 48 Z" fill="#FFF9C4" />
+        <path d="M 38 100 C 38 148 162 148 162 100 C 146 112 54 112 38 100 Z" fill="url(#heroDiyaBrass)" />
+        <ellipse cx="100" cy="100" rx="62" ry="12" fill="#E65100" opacity="0.6" />
+        <ellipse cx="100" cy="101" rx="56" ry="9" fill="#FFB300" opacity="0.5" />
+        <defs>
+          <linearGradient id="heroFlameGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#FFF59D" />
+            <stop offset="45%" stopColor="#FFA726" />
+            <stop offset="100%" stopColor="#E65100" />
+          </linearGradient>
+          <radialGradient id="heroFlameGlow">
+            <stop offset="0%" stopColor="#FFE082" />
+            <stop offset="100%" stopColor="transparent" />
+          </radialGradient>
+          <linearGradient id="heroDiyaBrass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#F5C842" />
+            <stop offset="50%" stopColor="#C9822A" />
+            <stop offset="100%" stopColor="#7B3F00" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  )
+}
 
 interface HeroSectionProps {
   onNavigate: (href: string) => void
@@ -254,14 +293,16 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
             {/* Ambient Radial Golden Aura behind the Diya */}
             <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-[#F5C842]/25 via-[#FF9800]/20 to-transparent blur-3xl pointer-events-none" />
 
-            {/* Dedicated 3D Diya Canvas */}
+            {/* Dedicated 3D Diya Canvas with instant fallback */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="relative w-72 h-72 sm:w-88 sm:h-88 lg:w-[420px] lg:h-[420px] flex items-center justify-center pointer-events-auto"
             >
-              <DiyaHero3D className="w-full h-full" />
+              <Suspense fallback={<DiyaPlaceholder className="w-full h-full" />}>
+                <DiyaHero3D className="w-full h-full" />
+              </Suspense>
             </motion.div>
 
             {/* UNDER THE DIYA: Festive QR Code & Invitation Button */}
@@ -310,12 +351,16 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         </div>
       </div>
 
-      {/* Professor Directory Selection Modal */}
-      <ProfessorSelectModal
-        isOpen={professorModalOpen}
-        onClose={() => setProfessorModalOpen(false)}
-        onSelectProfessor={handleSelectProfessor}
-      />
+      {/* Professor Directory Selection Modal (lazy loaded on demand) */}
+      {professorModalOpen && (
+        <Suspense fallback={null}>
+          <ProfessorSelectModal
+            isOpen={professorModalOpen}
+            onClose={() => setProfessorModalOpen(false)}
+            onSelectProfessor={handleSelectProfessor}
+          />
+        </Suspense>
+      )}
 
       {/* Bottom transition curve into cream menu */}
       <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-[#FDF6E3] to-transparent pointer-events-none z-10" />

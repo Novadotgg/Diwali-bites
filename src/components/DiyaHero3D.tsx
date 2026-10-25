@@ -22,13 +22,14 @@ export function DiyaHero3D({ className = 'w-full h-full' }: DiyaHero3DProps) {
     if (prefersReducedMotion || !containerRef.current) return
 
     const container = containerRef.current
-    let renderer: THREE.WebGLRenderer | null = null
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window)
 
     try {
       renderer = new THREE.WebGLRenderer({
         alpha: true,
-        antialias: true,
-        powerPreference: 'high-performance',
+        antialias: !isMobile,
+        powerPreference: isMobile ? 'default' : 'high-performance',
+        precision: isMobile ? 'mediump' : 'highp',
       })
     } catch {
       setHasWebGL(false)
@@ -39,9 +40,16 @@ export function DiyaHero3D({ className = 'w-full h-full' }: DiyaHero3DProps) {
     const height = container.clientHeight || 360
 
     renderer.setSize(width, height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 1.75))
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = 1.3
+
+    // Gracefully handle mobile WebGL context loss
+    renderer.domElement.addEventListener('webglcontextlost', (e) => {
+      e.preventDefault()
+      setHasWebGL(false)
+    })
+
     container.appendChild(renderer.domElement)
 
     const scene = new THREE.Scene()

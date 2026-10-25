@@ -139,11 +139,11 @@ export function Navbar({
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#4A0E2E]/98 backdrop-blur-2xl p-6 sm:p-8 flex flex-col justify-between md:hidden rangoli-bg"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[100] bg-[#4A0E2E]/98 backdrop-blur-2xl p-6 sm:p-8 flex flex-col justify-between md:hidden rangoli-bg overflow-y-auto min-h-screen"
           >
             <div className="flex items-center justify-between border-b border-[#F5C842]/20 pb-4">
               <div className="flex items-center gap-2">
