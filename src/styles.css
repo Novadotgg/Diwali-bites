@@ -269,6 +269,27 @@ html {
   scrollbar-width: none;
 }
 
+/* Custom Festive Gold Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(59, 11, 36, 0.6);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #F5C842 0%, #D4A017 100%);
+  border-radius: 9999px;
+  box-shadow: 0 0 8px rgba(245, 200, 66, 0.4);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #FFE066;
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #F5C842 rgba(59, 11, 36, 0.6);
+}
+
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

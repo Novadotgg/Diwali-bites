@@ -1,8 +1,13 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, Calendar, Clock, Store, ArrowRight } from 'lucide-react'
+import { Link, useNavigate } from '@tanstack/react-router'
+import { QRCodeSVG } from 'qrcode.react'
+import { MapPin, Calendar, Clock, Store, ArrowRight, GraduationCap } from 'lucide-react'
 import { siteContent } from '../content'
 import { DiyaHero3D } from './DiyaHero3D'
 import { MagneticButton } from './MagneticButton'
+import { ProfessorSelectModal } from './ProfessorSelectModal'
+import { Professor } from '../data/professors'
 import heroBg from '../assets/hero-diyas.jpg'
 
 interface HeroSectionProps {
@@ -92,7 +97,23 @@ function FairyLights() {
 }
 
 export function HeroSection({ onNavigate }: HeroSectionProps) {
+  const navigate = useNavigate()
   const title1Letters = Array.from(siteContent.hero.titleLine1)
+  const [invitationUrl, setInvitationUrl] = useState('/invitation')
+  const [professorModalOpen, setProfessorModalOpen] = useState(false)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setInvitationUrl(`${window.location.origin}/invitation`)
+    }
+  }, [])
+
+  const handleSelectProfessor = (prof: Professor) => {
+    navigate({
+      to: '/invitation',
+      search: { prof: prof.id } as any,
+    })
+  }
 
   return (
     <section
@@ -228,23 +249,73 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
             </motion.div>
           </div>
 
-          {/* RIGHT COLUMN: 3D Diya Showcase */}
-          <div className="lg:col-span-5 flex justify-center items-center relative">
+          {/* RIGHT COLUMN: 3D Diya Showcase & Under-Diya Invitation Pass */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
             {/* Ambient Radial Golden Aura behind the Diya */}
-            <div className="absolute w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-[#F5C842]/25 via-[#FF9800]/20 to-transparent blur-3xl pointer-events-none" />
+            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-[#F5C842]/25 via-[#FF9800]/20 to-transparent blur-3xl pointer-events-none" />
 
             {/* Dedicated 3D Diya Canvas */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.4 }}
-              className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[460px] lg:h-[460px] flex items-center justify-center pointer-events-auto"
+              className="relative w-72 h-72 sm:w-88 sm:h-88 lg:w-[420px] lg:h-[420px] flex items-center justify-center pointer-events-auto"
             >
               <DiyaHero3D className="w-full h-full" />
+            </motion.div>
+
+            {/* UNDER THE DIYA: Festive QR Code & Invitation Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="w-full max-w-sm sm:max-w-md mt-1 sm:mt-2 bg-[#3B0B24]/90 border border-[#F5C842]/40 rounded-2xl p-4 sm:p-5 shadow-card backdrop-blur-md relative z-10 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left hover:border-[#F5C842]/70 transition-all duration-300"
+            >
+              {/* Gold-framed QR Code */}
+              <div className="relative p-2 bg-[#FFFDF5] rounded-xl border-2 border-[#F5C842] shadow-md shrink-0 flex items-center justify-center group">
+                <QRCodeSVG
+                  value={invitationUrl}
+                  size={92}
+                  level="M"
+                  fgColor="#4A0E2E"
+                  bgColor="#FFFDF5"
+                />
+              </div>
+
+              {/* Action & Info */}
+              <div className="flex-1 flex flex-col items-center sm:items-start justify-center gap-1.5">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#6B1F4A]/80 border border-[#F5C842]/40 text-[#F5C842] text-[10px] font-bold uppercase tracking-wider">
+                  <GraduationCap className="w-3 h-3 text-[#F5C842]" />
+                  <span>Faculty Guest Pass</span>
+                </div>
+                <div>
+                  <h3 className="font-['Rozha_One'] text-lg sm:text-xl text-gold-gradient leading-tight">
+                    Faculty Invitation
+                  </h3>
+                  <p className="text-xs text-[#FDF6E3]/80 leading-snug mt-0.5">
+                    Click below to find your name or scan QR code
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setProfessorModalOpen(true)}
+                  className="mt-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-gold-gradient text-[#4A0E2E] font-bold text-xs shadow-glow hover:scale-105 active:scale-95 transition-all group"
+                >
+                  <span>Select Your Name</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
             </motion.div>
           </div>
         </div>
       </div>
+
+      {/* Professor Directory Selection Modal */}
+      <ProfessorSelectModal
+        isOpen={professorModalOpen}
+        onClose={() => setProfessorModalOpen(false)}
+        onSelectProfessor={handleSelectProfessor}
+      />
 
       {/* Bottom transition curve into cream menu */}
       <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-[#FDF6E3] to-transparent pointer-events-none z-10" />
