@@ -206,7 +206,7 @@ export function ItemModal({ item, onClose, onVisitStall }: ItemModalProps) {
           <div className="shrink-0 p-4 sm:p-5 bg-[#31071D] border-t border-[#F5C842]/20 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-xs text-[#F5C842] font-semibold text-center sm:text-left">
               <MapPin className="w-4 h-4 shrink-0" />
-              <span>Available live at Stall No. 4, PCET Architecture</span>
+              <span>Available live at Diwali Bites, PCET Architecture</span>
             </div>
             <button
               onClick={() => {

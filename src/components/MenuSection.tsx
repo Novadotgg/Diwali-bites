@@ -207,7 +207,7 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
             <span>•</span>
             <span>Freshly Prepared on Campus</span>
             <span>•</span>
-            <span>Stall No. 4</span>
+            <span>Diwali Mandi</span>
           </p>
         </div>
       </div>

@@ -27,7 +27,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-dr-kirti-dharwadkar.jpg",
     "cardImage": "/invitation/cards/dr-kirti-dharwadkar.jpg",
     "gender": "female",
-    "specialMessage": "Respected Director Ma'am, under your esteemed leadership, Diwali sparkles brighter! It is our utmost honor to invite you to inaugurate and bless Stall No. 4."
+    "specialMessage": "Respected Director Ma'am, under your esteemed leadership, Diwali sparkles brighter! It is our utmost honor to invite you to inaugurate and bless our Diwali Bites stall."
   },
   {
     "id": "dr-roopali-kudare",
@@ -40,7 +40,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-dr-roopali-kudare.jpg",
     "cardImage": "/invitation/cards/dr-roopali-kudare.jpg",
     "gender": "female",
-    "specialMessage": "Respected Dr. Roopali, your 20+ years of academic wisdom inspire us. Please grace Stall No. 4 and treat yourself to our signature festive delicacies."
+    "specialMessage": "Respected Dr. Roopali, your 20+ years of academic wisdom inspire us. Please grace our stall and treat yourself to our signature festive delicacies."
   },
   {
     "id": "mr-shivaji-desai",
@@ -66,7 +66,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-dr-kajal-maheshwari.jpg",
     "cardImage": "/invitation/cards/dr-kajal-maheshwari.jpg",
     "gender": "female",
-    "specialMessage": "Respected Dr. Kajal, our marketing campaign led all footsteps to Stall No. 4! Please join us for delightful festive bites and refreshing sips."
+    "specialMessage": "Respected Dr. Kajal, our marketing campaign led all footsteps to our festive stall! Please join us for delightful festive bites and refreshing sips."
   },
   {
     "id": "dr-bhushan-pardeshi",
@@ -105,7 +105,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-dr-yogendra-deokar.jpg",
     "cardImage": "/invitation/cards/dr-yogendra-deokar.jpg",
     "gender": "male",
-    "specialMessage": "Respected Dr. Yogendra, showcasing student entrepreneurship in full Diwali spirit! We would be delighted to host you for festive treats at Stall No. 4."
+    "specialMessage": "Respected Dr. Yogendra, showcasing student entrepreneurship in full Diwali spirit! We would be delighted to host you for festive treats at our stall."
   },
   {
     "id": "dr-anishkumar-karia",
@@ -131,7 +131,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-dr-santosh-shinde.jpg",
     "cardImage": "/invitation/cards/dr-santosh-shinde.jpg",
     "gender": "male",
-    "specialMessage": "Respected Dr. Santosh, supreme customer satisfaction and pure festive flavors await you! We cordially welcome you to grace Stall No. 4."
+    "specialMessage": "Respected Dr. Santosh, supreme customer satisfaction and pure festive flavors await you! We cordially welcome you to grace our stall."
   },
   {
     "id": "dr-swapnil-sonkamble",
@@ -141,7 +141,7 @@ export const professorsList: Professor[] = [
     "department": "Marketing Management & HR",
     "image": "/professors/real/dr-swapnil-sonkamble.jpg",
     "realImage": "/professors/real/dr-swapnil-sonkamble.jpg",
-    "caricature": "/professors/real/dr-swapnil-sonkamble.jpg",
+    "caricature": "/professors/cari-dr-swapnil-sonkamble.jpg",
     "cardImage": "/invitation/cards/dr-swapnil-sonkamble.jpg",
     "gender": "male",
     "specialMessage": "Respected Dr. Swapnil, our stall is placing 100% smiles this Diwali! We warmly invite you to enjoy our curated Chaat and festive Mojitos."
@@ -183,7 +183,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-dr-padmalochana-bisoyi.jpg",
     "cardImage": "/invitation/cards/dr-padmalochana-bisoyi.jpg",
     "gender": "female",
-    "specialMessage": "Respected Dr. Padmalochana, maximum festive utility and zero opportunity cost! We would be honored by your gracious presence at Stall No. 4."
+    "specialMessage": "Respected Dr. Padmalochana, maximum festive utility and zero opportunity cost! We would be honored by your gracious presence at our stall."
   },
   {
     "id": "dr-iram-sultana-ansari",
@@ -222,7 +222,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-dr-dileep-pawar.jpg",
     "cardImage": "/invitation/cards/dr-dileep-pawar.jpg",
     "gender": "male",
-    "specialMessage": "Respected Dr. Dileep, proven tonic for health and festive cheer: crispy tangy Dahi Chaat and chilled Mojito! Please visit us at Stall No. 4."
+    "specialMessage": "Respected Dr. Dileep, proven tonic for health and festive cheer: crispy tangy Dahi Chaat and chilled Mojito! Please visit us at our stall."
   },
   {
     "id": "dr-vishal-wagh",
@@ -235,7 +235,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-dr-vishal-wagh.jpg",
     "cardImage": "/invitation/cards/dr-vishal-wagh.jpg",
     "gender": "male",
-    "specialMessage": "Respected Dr. Vishal, our brand of festive joy is trending campus-wide! We look forward to hosting you for refreshing sips at Stall No. 4."
+    "specialMessage": "Respected Dr. Vishal, our brand of festive joy is trending campus-wide! We look forward to hosting you for refreshing sips at our stall."
   },
   {
     "id": "mr-sameer-thakur",
@@ -248,7 +248,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-mr-sameer-thakur.jpg",
     "cardImage": "/invitation/cards/mr-sameer-thakur.jpg",
     "gender": "male",
-    "specialMessage": "Respected Prof. Sameer, festive spirits are booming at an all-time high! Please join us at Stall No. 4 for delightful treats and celebrations."
+    "specialMessage": "Respected Prof. Sameer, festive spirits are booming at an all-time high! Please join us at our stall for delightful treats and celebrations."
   },
   {
     "id": "ms-poorva-sane",
@@ -274,7 +274,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-mrs-puja-gavande.jpg",
     "cardImage": "/invitation/cards/mrs-puja-gavande.jpg",
     "gender": "female",
-    "specialMessage": "Respected Prof. Puja, the data speaks for itself: 100% taste accuracy and joyful vibes! We look forward to welcoming you to Stall No. 4."
+    "specialMessage": "Respected Prof. Puja, the data speaks for itself: 100% taste accuracy and joyful vibes! We look forward to welcoming you to our stall."
   },
   {
     "id": "ms-yugandhara-konde",
@@ -339,7 +339,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-miss-pooja-lonale.jpg",
     "cardImage": "/invitation/cards/miss-pooja-lonale.jpg",
     "gender": "female",
-    "specialMessage": "Respected Miss Pooja, placement into pure festive happiness guaranteed! Please grace Stall No. 4 and enjoy our delightful Diwali treats."
+    "specialMessage": "Respected Miss Pooja, placement into pure festive happiness guaranteed! Please grace our stall and enjoy our delightful Diwali treats."
   },
   {
     "id": "mrs-swati-satpute",
@@ -352,7 +352,7 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-mrs-swati-satpute.jpg",
     "cardImage": "/invitation/cards/mrs-swati-satpute.jpg",
     "gender": "female",
-    "specialMessage": "Respected Mrs. Swati, bookmark this Diwali for sweetness and laughter! We would be deeply honored by your presence at Stall No. 4."
+    "specialMessage": "Respected Mrs. Swati, bookmark this Diwali for sweetness and laughter! We would be deeply honored by your presence at our stall."
   },
   {
     "id": "ms-tanmayi-nachane",
@@ -365,6 +365,6 @@ export const professorsList: Professor[] = [
     "caricature": "/professors/cari-ms-tanmayi-nachane.jpg",
     "cardImage": "/invitation/cards/ms-tanmayi-nachane.jpg",
     "gender": "female",
-    "specialMessage": "Respected Prof. Tanmayi, vibrant energy and sweet celebrations! We warmly welcome you to celebrate the festive season with us at Stall No. 4."
+    "specialMessage": "Respected Prof. Tanmayi, vibrant energy and sweet celebrations! We warmly welcome you to celebrate the festive season with us at our stall."
   }
 ]

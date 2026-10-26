@@ -231,7 +231,7 @@ export function ProfessorSelectModal({
             {/* Note & Count */}
             <div className="mt-3 pt-3 border-t border-[#F5C842]/20 flex items-center justify-between text-[11px] text-[#FDF6E3]/60">
               <span>{filteredProfessors.length} Faculty Members Listed</span>
-              <span>Stall No. 4 • PCET Campus</span>
+              <span>Diwali Bites • PCET Campus</span>
             </div>
           </motion.div>
         </div>

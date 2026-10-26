@@ -7,7 +7,6 @@ import {
   Check,
   GraduationCap,
   Store,
-  Users,
   Search,
   ChevronRight,
   ChevronUp,
@@ -34,9 +33,9 @@ function downloadCalendarInvite(professorName: string) {
     'DTSTAMP:20261026T000000Z',
     'DTSTART:20261027T033000Z', // 9:00 AM IST
     'DTEND:20261027T113000Z',   // 5:00 PM IST
-    'SUMMARY:Diwali Bites Special Invitation - Stall No. 4',
-    `DESCRIPTION:Respected ${professorName}, you are cordially invited to Diwali Bites Stall No. 4 at PCET S.B. Patil Architecture Campus. Delicious chatpate food and refreshing mojitos await!`,
-    'LOCATION:Stall No. 4, PCET S.B. Patil Architecture Building, Diwali Mandi 2026',
+    'SUMMARY:Diwali Bites Special Faculty Invitation',
+    `DESCRIPTION:Respected ${professorName}, you are cordially invited to Diwali Bites at PCET S.B. Patil Architecture Campus. Delicious chatpate food and refreshing mojitos await!`,
+    'LOCATION:PCET S.B. Patil Architecture Building, Diwali Mandi 2026',
     'STATUS:CONFIRMED',
     'END:VEVENT',
     'END:VCALENDAR',
@@ -118,8 +117,8 @@ function InvitationPage() {
       ? `Diwali Bites Invitation — ${selectedProfessor.name}`
       : 'Diwali Bites Faculty Invitation'
     const shareText = selectedProfessor
-      ? `Respected ${selectedProfessor.name}, you are cordially invited to Diwali Bites (Stall No. 4, PCET Architecture Campus) for Diwali Mandi 2026!`
-      : 'Special Faculty Invitation to Diwali Bites Stall No. 4!'
+      ? `Respected ${selectedProfessor.name}, you are cordially invited to Diwali Bites (PCET Architecture Campus) for Diwali Mandi 2026!`
+      : 'Special Faculty Invitation to Diwali Bites!'
 
     if (navigator.share) {
       try {
@@ -211,16 +210,6 @@ function InvitationPage() {
         </Link>
 
         <div className="flex items-center gap-2">
-          {selectedProfessor && (
-            <button
-              onClick={handleResetProfessor}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#4A0E2E]/90 border border-[#F2C230]/40 text-xs sm:text-sm font-semibold text-[#FFF4DC] hover:border-[#F2C230] hover:text-[#F2C230] transition-all backdrop-blur-md shadow-sm min-h-[42px]"
-            >
-              <Users className="w-3.5 h-3.5 text-[#F2C230]" />
-              <span>Change Faculty</span>
-            </button>
-          )}
-
           <button
             onClick={handleShare}
             aria-label="Share this invitation"
@@ -428,7 +417,7 @@ function InvitationPage() {
               {/* Selector Footer */}
               <div className="mt-5 pt-4 border-t border-[#D4A017]/25 text-center">
                 <span className="inline-block text-[10px] uppercase tracking-widest text-[#8A5A00] font-bold">
-                  Diwali Bites • Stall No. 4 • PCET Architecture Campus
+                  Diwali Bites • PCET Architecture Campus
                 </span>
               </div>
             </motion.div>
@@ -438,7 +427,7 @@ function InvitationPage() {
 
       {/* Footer */}
       <footer className="relative z-10 py-4 text-center text-[11px] text-[#FFF4DC]/60 no-print">
-        <p>Diwali Bites • Stall No. 4 • PCET Architecture Campus • Celebrating with Light & Taste</p>
+        <p>Diwali Bites • PCET Architecture Campus • Celebrating with Light & Taste</p>
       </footer>
     </div>
   )

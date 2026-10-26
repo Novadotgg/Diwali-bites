@@ -123,7 +123,7 @@ export function Navbar({
             onClick={() => onNavigate(siteContent.nav.cta.href)}
             className="px-3 py-1.5 rounded-full bg-gold-gradient text-[#4A0E2E] font-black text-xs shadow-glow"
           >
-            Stall No. 4
+            Find Stall
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

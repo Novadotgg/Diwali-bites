@@ -32,7 +32,7 @@ export function GamesSection() {
     if (nextCount === 5) {
       setStreakMessage('Festive Spark! Keep going!')
     } else if (nextCount === 10) {
-      setStreakMessage('Grand Diya Master! Show this at Stall 4!')
+      setStreakMessage('Grand Diya Master! Show this at our stall!')
     } else if (nextCount > 10 && nextCount % 5 === 0) {
       setStreakMessage(`${nextCount} Diyas glowing bright!`)
     }
@@ -142,7 +142,7 @@ export function GamesSection() {
             <div className="p-8 sm:p-10 flex flex-col justify-center">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F5C842]/15 text-[#F5C842] text-xs font-bold w-fit mb-4 border border-[#F5C842]/30">
                 <Store className="w-3.5 h-3.5" />
-                <span>Diwali Mandi Stall No. 4</span>
+                <span>Diwali Mandi Special</span>
               </div>
 
               <h3 className="font-['Rozha_One'] text-2xl sm:text-3xl text-gold-gradient mb-3">

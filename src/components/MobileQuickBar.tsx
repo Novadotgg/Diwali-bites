@@ -22,7 +22,7 @@ export function MobileQuickBar({ activeSection, onNavigate }: MobileQuickBarProp
           <span>Menu</span>
         </button>
 
-        {/* Stall 4 Quick Button */}
+        {/* Stall Quick Button */}
         <button
           onClick={() => onNavigate('#stall')}
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
@@ -32,7 +32,7 @@ export function MobileQuickBar({ activeSection, onNavigate }: MobileQuickBarProp
           }`}
         >
           <MapPin className="w-3.5 h-3.5" />
-          <span>Stall 4</span>
+          <span>Stall</span>
         </button>
 
         {/* Games Quick Button */}

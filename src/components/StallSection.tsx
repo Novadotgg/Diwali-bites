@@ -68,7 +68,7 @@ export function StallSection() {
           </motion.p>
         </div>
 
-        {/* Big Neon Marquee Board for Stall No. 4 */}
+        {/* Big Neon Marquee Board */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -133,7 +133,7 @@ export function StallSection() {
           className="bg-plum-gradient text-[#FDF6E3] rounded-3xl p-8 sm:p-10 border border-[#F5C842]/30 shadow-card relative overflow-hidden"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            {/* Left: Illustrated Walk Path to Stall 4 */}
+            {/* Left: Illustrated Walk Path */}
             <div className="bg-[#3B0B24]/80 rounded-2xl p-6 border border-[#F5C842]/20 flex flex-col justify-between">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#F5C842] flex items-center gap-1.5">
@@ -161,10 +161,10 @@ export function StallSection() {
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="w-6 h-6 rounded-full bg-gold-gradient text-[#4A0E2E] flex items-center justify-center font-black text-xs shrink-0 shadow-glow-sm">
-                    4
+                    3
                   </span>
                   <span className="font-semibold text-white">
-                    Spot the glowing <strong className="text-[#F5C842]">Stall No. 4</strong> banner with chilled mojitos and freshly tossed chaat!
+                    Spot the glowing <strong className="text-[#F5C842]">Diwali Bites</strong> banner with chilled mojitos and freshly tossed chaat!
                   </span>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export function StallSection() {
                   <span>Stall Location</span>
                 </div>
                 <p className="font-['Rozha_One'] text-base sm:text-lg text-gold-gradient leading-snug">
-                  {stall.stallNumber} (Diwali Bites)
+                  Diwali Bites • Campus Courtyard
                 </p>
               </div>
 

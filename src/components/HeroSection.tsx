@@ -268,7 +268,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
             >
               <span className="flex items-center gap-1.5 text-[#F5C842]">
                 <Store className="w-3.5 h-3.5" />
-                <strong className="underline decoration-[#F5C842]">Stall No. 4</strong>
+                <strong className="underline decoration-[#F5C842]">Food Stall</strong>
               </span>
               <span className="text-[#F5C842]/40 hidden sm:inline">•</span>
               <span className="flex items-center gap-1.5">

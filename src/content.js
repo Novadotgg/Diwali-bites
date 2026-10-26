@@ -19,7 +19,7 @@ export const siteContent = {
       { label: "Find Stall", href: "#stall" },
     ],
     cta: {
-      label: "Visit Stall No. 4",
+      label: "Find Our Stall",
       href: "#stall",
     },
   },
@@ -34,7 +34,7 @@ export const siteContent = {
       href: "#menu",
     },
     secondaryCta: {
-      label: "Find Stall No. 4",
+      label: "Find Our Stall",
       href: "#stall",
     },
   },
@@ -138,10 +138,10 @@ export const siteContent = {
   stall: {
     heading: "Find Our Stall",
     subtitle:
-      "Come say hi, grab your treats, and soak in the festive cheer. Follow the fairy lights to Stall No. 4!",
+      "Come say hi, grab your treats, and soak in the festive cheer. Follow the fairy lights to our stall!",
     badge: "Event Coordinates",
     cardTitle: "Diwali Mandi 2026",
-    stallNumber: "Stall No. 4",
+    stallNumber: "Diwali Bites Stall",
     venueLabel: "Venue",
     venue: "PCET, S.B. Patil Architecture Building",
     dateLabel: "Date",
