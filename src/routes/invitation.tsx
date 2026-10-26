@@ -233,37 +233,17 @@ function InvitationPage() {
 
         <div className="flex items-center gap-2">
           {selectedProfessor && (
-            <>
-              <button
-                onClick={handleResetProfessor}
-                aria-label="View all faculty names"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#4A0E2E]/90 border border-[#F2C230]/40 text-xs sm:text-sm font-semibold text-[#FFF4DC] hover:border-[#F2C230] hover:text-[#F2C230] transition-all backdrop-blur-md shadow-sm min-h-[42px]"
-              >
-                <GraduationCap className="w-3.5 h-3.5 text-[#F2C230]" />
-                <span>All Faculty Names</span>
-              </button>
-
-              <button
-                onClick={handleDownloadImage}
-                disabled={isDownloading}
-                aria-label="Download invitation image"
-                title="Download invitation image (.jpg)"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#4A0E2E]/90 border border-[#F2C230]/40 text-xs sm:text-sm font-semibold text-[#FFF4DC] hover:border-[#F2C230] hover:text-[#F2C230] transition-all backdrop-blur-md shadow-sm min-h-[42px] disabled:opacity-60"
-              >
-                <Download className="w-3.5 h-3.5 text-[#F2C230]" />
-                <span className="hidden sm:inline">{isDownloading ? 'Saving...' : 'Save Image'}</span>
-              </button>
-            </>
+            <button
+              onClick={handleDownloadImage}
+              disabled={isDownloading}
+              aria-label="Download invitation image"
+              title="Download invitation image (.jpg)"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#4A0E2E]/90 border border-[#F2C230]/40 text-xs sm:text-sm font-semibold text-[#FFF4DC] hover:border-[#F2C230] hover:text-[#F2C230] transition-all backdrop-blur-md shadow-sm min-h-[42px] disabled:opacity-60"
+            >
+              <Download className="w-3.5 h-3.5 text-[#F2C230]" />
+              <span>{isDownloading ? 'Saving...' : 'Save Image'}</span>
+            </button>
           )}
-
-          <button
-            onClick={handleShare}
-            aria-label="Share this invitation"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#4A0E2E]/90 border border-[#F2C230]/40 text-xs sm:text-sm font-semibold text-[#FFF4DC] hover:border-[#F2C230] hover:text-[#F2C230] transition-all backdrop-blur-md shadow-sm min-h-[42px]"
-          >
-            <Share2 className="w-3.5 h-3.5 text-[#F2C230]" />
-            <span>Share</span>
-          </button>
         </div>
       </header>
 

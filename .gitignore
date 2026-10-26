@@ -42,3 +42,6 @@ desktop.ini
 
 # Coverage
 coverage/
+
+# Documentation notes
+HOW_I_BUILT_THIS.md
