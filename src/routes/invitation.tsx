@@ -12,6 +12,7 @@ import {
   ChevronUp,
   ChevronDown,
   Download,
+  X,
 } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { Professor, professorsList } from '../data/professors'
@@ -65,17 +66,24 @@ function InvitationPage() {
   const directoryListRef = useRef<HTMLDivElement>(null)
 
   // Sync with URL query param `?prof=<id>`
+  // When QR code is scanned (/invitation), selectedProfId is null, showing the faculty directory in order
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search)
-      const profParam = params.get('prof')
-      if (profParam) {
-        setSelectedProfId(profParam)
-      } else {
-        // Default to Dr. Kirti Dharwadkar (Director)
-        setSelectedProfId('dr-kirti-dharwadkar')
+    const handleUrlSync = () => {
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search)
+        const profParam = params.get('prof')
+        if (profParam) {
+          setSelectedProfId(profParam)
+        } else {
+          // Show directory so user can choose their name from the ordered list
+          setSelectedProfId(null)
+        }
       }
     }
+
+    handleUrlSync()
+    window.addEventListener('popstate', handleUrlSync)
+    return () => window.removeEventListener('popstate', handleUrlSync)
   }, [])
 
   const selectedProfessor = professorsList.find((p) => p.id === selectedProfId) || null
@@ -156,7 +164,7 @@ function InvitationPage() {
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
   }
 
-  // Filtered professors for directory search
+  // Filtered professors for directory search (maintaining official order)
   const filteredProfessors = professorsList.filter(
     (prof) =>
       prof.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -210,6 +218,17 @@ function InvitationPage() {
         </Link>
 
         <div className="flex items-center gap-2">
+          {selectedProfessor && (
+            <button
+              onClick={handleResetProfessor}
+              aria-label="View all faculty names"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#4A0E2E]/90 border border-[#F2C230]/40 text-xs sm:text-sm font-semibold text-[#FFF4DC] hover:border-[#F2C230] hover:text-[#F2C230] transition-all backdrop-blur-md shadow-sm min-h-[42px]"
+            >
+              <GraduationCap className="w-3.5 h-3.5 text-[#F2C230]" />
+              <span>All Faculty Names</span>
+            </button>
+          )}
+
           <button
             onClick={handleShare}
             aria-label="Share this invitation"
@@ -269,6 +288,16 @@ function InvitationPage() {
               <div className="mt-5 flex flex-wrap items-center justify-center gap-3 w-full max-w-md no-print">
                 <button
                   type="button"
+                  onClick={handleResetProfessor}
+                  aria-label="Choose another faculty member"
+                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#4A0E2E] hover:bg-[#6B1F4A] border-2 border-[#D4A017] text-xs sm:text-sm font-bold text-[#F5C842] shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all min-h-[44px]"
+                >
+                  <GraduationCap className="w-4 h-4 text-[#F5C842]" />
+                  <span>Choose Another Faculty Name</span>
+                </button>
+
+                <button
+                  type="button"
                   onClick={handleShare}
                   aria-label="Share invitation"
                   className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/95 hover:bg-white border border-[#D4A017] text-xs sm:text-sm font-bold text-[#4A0E2E] shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all min-h-[44px]"
@@ -299,6 +328,9 @@ function InvitationPage() {
           ) : (
             /* ========================================================================
                FACULTY DIRECTORY SELECTOR (Search & Quick Pick)
+               - Opened directly when QR Code is scanned
+               - Shows all faculty names in official order (1 to 27)
+               - Clicking any name opens their official personalized invitation card
                ======================================================================== */
             <motion.div
               key="directory"
@@ -306,20 +338,20 @@ function InvitationPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -16 }}
               transition={{ duration: 0.4 }}
-              className="relative w-full max-w-[540px] rounded-3xl p-6 sm:p-8 bg-[#FCF5E5] text-[#3B0B24] border-2 border-[#D4A017] shadow-2xl overflow-hidden"
+              className="relative w-full max-w-[580px] rounded-3xl p-5 sm:p-7 bg-[#FCF5E5] text-[#3B0B24] border-2 border-[#D4A017] shadow-2xl overflow-hidden"
             >
               <div className="text-center mb-5">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5C842]/30 border border-[#D4A017]/60 text-[#8A5A00] text-xs font-bold tracking-widest uppercase mb-2">
                   <GraduationCap className="w-4 h-4 text-[#8A5A00]" />
-                  <span>Faculty Directory</span>
+                  <span>Official Faculty Directory</span>
                 </div>
 
                 <h2 className="font-['Rozha_One'] text-2xl sm:text-4xl text-[#4A0E2E] tracking-tight mb-1">
-                  Select Faculty Member
+                  Choose Your Name
                 </h2>
 
-                <p className="font-['Manrope'] text-xs sm:text-sm text-[#4A0E2E]/80 max-w-sm mx-auto leading-relaxed">
-                  Choose a faculty member to view their official personalized invitation poster.
+                <p className="font-['Manrope'] text-xs sm:text-sm text-[#4A0E2E]/80 max-w-md mx-auto leading-relaxed">
+                  Respected Faculty & Guests, please find and select your name from the directory in order below to open your personalized Diwali Bites invitation.
                 </p>
               </div>
 
@@ -331,9 +363,19 @@ function InvitationPage() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search name or department..."
-                    className="w-full pl-10 pr-4 py-2 rounded-xl bg-white border border-[#D4A017]/50 text-xs sm:text-sm text-[#3B0B24] placeholder-[#3B0B24]/40 focus:outline-none focus:border-[#D4A017] transition-all shadow-sm"
+                    placeholder="Search name, designation, or department..."
+                    className="w-full pl-10 pr-9 py-2.5 rounded-xl bg-white border border-[#D4A017]/50 text-xs sm:text-sm text-[#3B0B24] placeholder-[#3B0B24]/40 focus:outline-none focus:border-[#D4A017] transition-all shadow-sm"
                   />
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setSearchQuery('')}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8A5A00] hover:text-[#4A0E2E] p-1"
+                      aria-label="Clear search"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-[#D4A017]/40 shrink-0 shadow-sm">
@@ -368,57 +410,87 @@ function InvitationPage() {
                 </div>
               </div>
 
-              {/* Scrollable Professor List */}
+              {/* Status pill showing total count */}
+              <div className="flex items-center justify-between text-[11px] font-bold text-[#8A5A00] px-1 mb-2">
+                <span>
+                  {searchQuery
+                    ? `Matching ${filteredProfessors.length} of ${professorsList.length} Faculty Members`
+                    : `All ${professorsList.length} Faculty Members in Order`}
+                </span>
+                <span className="text-[10px] text-[#4A0E2E]/60 uppercase tracking-wider">Tap to View</span>
+              </div>
+
+              {/* Scrollable Professor List in Order */}
               <div
                 ref={directoryListRef}
                 onScroll={checkDirScroll}
-                className="space-y-2.5 max-h-[340px] overflow-y-auto pr-1 custom-scrollbar"
+                className="space-y-2 max-h-[58vh] sm:max-h-[460px] overflow-y-auto pr-1 custom-scrollbar"
               >
-                {filteredProfessors.map((prof) => (
-                  <button
-                    key={prof.id}
-                    onClick={() => handleSelectProfessor(prof.id)}
-                    className="w-full text-left p-3 rounded-2xl bg-white hover:bg-[#FFF8E7] border border-[#D4A017]/35 hover:border-[#D4A017] transition-all flex items-center justify-between group shadow-sm hover:shadow-md cursor-pointer"
-                  >
-                    <div className="flex items-center gap-3">
-                      {/* Real Photo Avatar */}
-                      <div className="w-11 h-11 rounded-full bg-[#F5C842]/20 border border-[#D4A017]/60 overflow-hidden flex items-center justify-center shrink-0">
-                        {prof.realImage || prof.image ? (
-                          <img
-                            src={prof.realImage || prof.image}
-                            alt={prof.name}
-                            className="w-full h-full object-cover object-center"
-                          />
-                        ) : (
-                          <span className="font-bold text-xs text-[#8A5A00]">
-                            {getInitials(prof.name)}
-                          </span>
-                        )}
-                      </div>
+                {filteredProfessors.length === 0 ? (
+                  <div className="py-12 text-center text-[#4A0E2E]/70 bg-white/60 rounded-2xl border border-dashed border-[#D4A017]/40">
+                    <p className="text-sm font-semibold">No faculty found matching "{searchQuery}"</p>
+                    <button
+                      type="button"
+                      onClick={() => setSearchQuery('')}
+                      className="mt-2 text-xs font-bold text-[#8A5A00] underline hover:text-[#4A0E2E]"
+                    >
+                      Clear search & view all
+                    </button>
+                  </div>
+                ) : (
+                  filteredProfessors.map((prof) => {
+                    const orderNumber = professorsList.findIndex((p) => p.id === prof.id) + 1
+                    return (
+                      <button
+                        key={prof.id}
+                        onClick={() => handleSelectProfessor(prof.id)}
+                        className="w-full text-left p-3 rounded-2xl bg-white hover:bg-[#FFF8E7] border border-[#D4A017]/35 hover:border-[#D4A017] transition-all flex items-center justify-between group shadow-sm hover:shadow-md cursor-pointer"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          {/* Order Number Badge */}
+                          <div className="w-6 h-6 rounded-full bg-[#F5C842]/25 border border-[#D4A017]/50 text-[11px] font-extrabold text-[#8A5A00] flex items-center justify-center shrink-0">
+                            {orderNumber}
+                          </div>
 
-                      <div>
-                        <h3 className="text-xs sm:text-sm font-bold text-[#4A0E2E] group-hover:text-[#8A5A00] transition-colors leading-snug">
-                          {prof.name}
-                        </h3>
-                        <p className="text-[11px] text-[#4A0E2E]/70 font-medium">
-                          {prof.designation} • {prof.department}
-                        </p>
-                      </div>
-                    </div>
+                          {/* Real Photo Avatar */}
+                          <div className="w-11 h-11 rounded-full bg-[#F5C842]/20 border border-[#D4A017]/60 overflow-hidden flex items-center justify-center shrink-0">
+                            {prof.realImage || prof.image ? (
+                              <img
+                                src={prof.realImage || prof.image}
+                                alt={prof.name}
+                                className="w-full h-full object-cover object-center"
+                              />
+                            ) : (
+                              <span className="font-bold text-xs text-[#8A5A00]">
+                                {getInitials(prof.name)}
+                              </span>
+                            )}
+                          </div>
 
-                    <div className="flex items-center gap-1 text-xs font-bold text-[#8A5A00] shrink-0">
-                      <span className="hidden sm:inline">View</span>
-                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </button>
-                ))}
+                          <div className="min-w-0 pr-1">
+                            <h3 className="text-xs sm:text-sm font-bold text-[#4A0E2E] group-hover:text-[#8A5A00] transition-colors leading-snug truncate">
+                              {prof.name}
+                            </h3>
+                            <p className="text-[11px] text-[#4A0E2E]/75 font-medium truncate">
+                              {prof.designation} • {prof.department}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1 text-xs font-bold text-[#8A5A00] shrink-0 ml-2 group-hover:text-[#4A0E2E] transition-colors">
+                          <span className="hidden sm:inline">View Invite</span>
+                          <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#D4A017]" />
+                        </div>
+                      </button>
+                    )
+                  })
+                )}
               </div>
 
               {/* Selector Footer */}
-              <div className="mt-5 pt-4 border-t border-[#D4A017]/25 text-center">
-                <span className="inline-block text-[10px] uppercase tracking-widest text-[#8A5A00] font-bold">
-                  Diwali Bites • PCET Architecture Campus
-                </span>
+              <div className="mt-4 pt-3 border-t border-[#D4A017]/25 text-center flex items-center justify-between text-[10px] text-[#8A5A00] font-bold">
+                <span className="uppercase tracking-widest">Diwali Bites 2026</span>
+                <span className="text-[#4A0E2E]/60 font-normal">PCET Architecture Campus</span>
               </div>
             </motion.div>
           )}
