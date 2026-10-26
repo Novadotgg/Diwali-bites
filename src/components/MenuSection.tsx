@@ -9,12 +9,13 @@ import mojitoImg from '../assets/mojito.jpeg'
 import chaatImg from '../assets/chaat.jpeg'
 import dahiChaatImg from '../assets/dahichat.jpeg'
 import bhelImg from '../assets/bhel.jpeg'
+import hamperImg from '../assets/hamper.jpeg'
 
 interface MenuSectionProps {
   onVisitStall: () => void
 }
 
-type CategoryType = 'all' | 'mojitos' | 'chaat' | 'dahichaat' | 'bhel'
+type CategoryType = 'all' | 'mojitos' | 'chaat' | 'dahichaat' | 'bhel' | 'hamper'
 
 export function MenuSection({ onVisitStall }: MenuSectionProps) {
   const [activeCategory, setActiveCategory] = useState<CategoryType>('all')
@@ -25,13 +26,15 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
   const chaatItem = siteContent.menu.items.find((item) => item.id === 'loaded-chips-chaat')
   const dahiChaatItem = siteContent.menu.items.find((item) => item.id === 'dahi-chaat')
   const bhelItem = siteContent.menu.items.find((item) => item.id === 'special-bhel')
+  const hamperItem = siteContent.menu.items.find((item) => item.id === 'diwali-gift-hamper')
 
   const categories: { id: CategoryType; label: string }[] = [
-    { id: 'all', label: 'All Delights (4)' },
+    { id: 'all', label: 'All Delights (5)' },
     { id: 'mojitos', label: 'Fresh Mojitos' },
     { id: 'chaat', label: 'Chips Chaat' },
     { id: 'dahichaat', label: 'Dahi Chaat' },
     { id: 'bhel', label: 'Special Bhel' },
+    { id: 'hamper', label: 'Gift Hamper' },
   ]
 
   const shouldShow = (cat: CategoryType) => {
@@ -159,7 +162,7 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
         </div>
 
         {/* 3D Tilt Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8 items-stretch">
           {/* Card 1: Fresh Mojitos */}
           {mojitoItem && shouldShow('mojitos') && (
             <TiltCard
@@ -193,6 +196,15 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
               item={bhelItem}
               imageSrc={bhelImg}
               onCardClick={() => setSelectedItem(bhelItem)}
+            />
+          )}
+
+          {/* Card 5: Festive Gift Hamper */}
+          {hamperItem && shouldShow('hamper') && (
+            <TiltCard
+              item={hamperItem}
+              imageSrc={hamperImg}
+              onCardClick={() => setSelectedItem(hamperItem)}
             />
           )}
         </div>

@@ -7,9 +7,9 @@ export interface MenuItem {
   id: string;
   tag: string;
   name: string;
-  price: string;
+  price?: string;
   description: string;
-  category?: 'all' | 'mojitos' | 'chaat' | 'dahichaat' | 'bhel';
+  category?: 'all' | 'mojitos' | 'chaat' | 'dahichaat' | 'bhel' | 'hamper';
   isVeg?: boolean;
   highlightBadge?: string;
   ingredients?: string[];

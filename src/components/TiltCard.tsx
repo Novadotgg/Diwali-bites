@@ -107,26 +107,30 @@ export function TiltCard({
           <span className="px-3.5 py-1.5 rounded-full bg-[#4A0E2E]/92 text-[#F5C842] text-xs font-bold shadow-md backdrop-blur-md border border-[#F5C842]/35">
             {item.tag}
           </span>
-          <div
-            className={`w-5 h-5 rounded-[4px] border flex items-center justify-center bg-white/95 shadow-md ${
-              item.isVeg !== false ? 'border-emerald-600' : 'border-red-600'
-            }`}
-            title={item.isVeg !== false ? 'Vegetarian' : 'Non-Vegetarian'}
-          >
-            <span
-              className={`w-2.5 h-2.5 rounded-full ${
-                item.isVeg !== false ? 'bg-emerald-600' : 'bg-red-600'
+          {item.isVeg !== undefined && (
+            <div
+              className={`w-5 h-5 rounded-[4px] border flex items-center justify-center bg-white/95 shadow-md ${
+                item.isVeg ? 'border-emerald-600' : 'border-red-600'
               }`}
-            />
-          </div>
+              title={item.isVeg ? 'Vegetarian' : 'Non-Vegetarian'}
+            >
+              <span
+                className={`w-2.5 h-2.5 rounded-full ${
+                  item.isVeg ? 'bg-emerald-600' : 'bg-red-600'
+                }`}
+              />
+            </div>
+          )}
         </div>
 
         {/* Price Tag Pill Top-Right */}
-        <div className="absolute top-4 right-4 z-20">
-          <span className="px-3.5 py-1.5 rounded-full bg-gold-gradient text-[#4A0E2E] font-black text-xs sm:text-sm shadow-md group-hover:scale-105 transition-transform duration-300">
-            {item.price || '[PRICE]'}
-          </span>
-        </div>
+        {item.price && (
+          <div className="absolute top-4 right-4 z-20">
+            <span className="px-3.5 py-1.5 rounded-full bg-gold-gradient text-[#4A0E2E] font-black text-xs sm:text-sm shadow-md group-hover:scale-105 transition-transform duration-300">
+              {item.price}
+            </span>
+          </div>
+        )}
 
 
         {/* Active Flavor Pill (Bottom Left) if present */}
