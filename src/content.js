@@ -19,22 +19,22 @@ export const siteContent = {
       { label: "Find Stall", href: "#stall" },
     ],
     cta: {
-      label: "Find Our Stall",
+      label: "Stall No. 11",
       href: "#stall",
     },
   },
   hero: {
-    badge: "College Diwali Mandi 2026",
+    badge: "College Diwali Mandi 2026 • Stall No. 11",
     titleLine1: "DIWALI BITES",
     titleLine2: "Taste the Festive Magic!",
     supportingLine:
-      "Handcrafted festive refreshments, tangy loaded street bites, and melt-in-mouth traditional delicacies — brought to life by students for the grand Diwali Mandi.",
+      "Handcrafted festive refreshments, tangy loaded street bites, and melt-in-mouth traditional delicacies — brought to life by students at Stall No. 11 for the grand Diwali Mandi.",
     primaryCta: {
       label: "Explore Our Menu",
       href: "#menu",
     },
     secondaryCta: {
-      label: "Find Our Stall",
+      label: "Visit Stall No. 11",
       href: "#stall",
     },
   },
@@ -122,12 +122,46 @@ export const siteContent = {
     teaserDescription:
       "Our team is cooking up carnival stalls, festive challenge games, and celebration gift hampers loaded with Diwali goodies for you and your squad. Reveal coming on event morning!",
     hamperImage: hamperImg,
+    luckyBall: {
+      title: "Lucky Ball Challenge",
+      subtitle: "Guess the Colour & Win Buy 1 Get 1 Free!",
+      badge: "Featured Stall No. 11 Challenge",
+      entryFee: "₹10",
+      entryFeeLabel: "₹10 Entry Fee",
+      prize: "BUY 1 GET 1 FREE",
+      prizeDescription: "Win an exclusive Buy 1 Get 1 Free offer on your Diwali Bites food or mojito order!",
+      tagline: "Come !! Play !! Test your luck & win a special discount!",
+      videoUrl: "/videos/guess-the-color.mp4",
+      videoPoster: "/videos/guess-the-color-poster.jpg",
+      rules: [
+        {
+          num: 1,
+          title: "Entry Fee",
+          description: "There is a ₹10 entry fee required to participate and play the game.",
+        },
+        {
+          num: 2,
+          title: "Guess the Colour",
+          description: "Guess the colour of the ball before it is drawn from the box.",
+        },
+        {
+          num: 3,
+          title: "Buy 1 Get 1 Free Offer",
+          description: "If your guess is correct, you get a BUY 1 GET 1 FREE offer on your order!",
+        },
+        {
+          num: 4,
+          title: "Order by Preference",
+          description: "Ordering a product is completely up to your preference. Thank you for playing & have fun!",
+        },
+      ],
+    },
     mysteryCards: [
       {
         id: 1,
-        title: "Mystery Game #1",
-        teaser: "Test your lightning reflexes & aim",
-        prizeHint: "Win instant sweet treats",
+        title: "Lucky Ball Challenge",
+        teaser: "Guess the mystery ball colour & unlock BOGO!",
+        prizeHint: "Buy 1 Get 1 Free (₹10 entry)",
       },
       {
         id: 2,
@@ -144,27 +178,27 @@ export const siteContent = {
     ],
   },
   stall: {
-    heading: "Find Our Stall",
+    heading: "Find Stall No. 11",
     subtitle:
-      "Come say hi, grab your treats, and soak in the festive cheer. Follow the fairy lights to our stall!",
+      "Come say hi, grab your treats, and soak in the festive cheer. Follow the fairy lights straight to Stall No. 11!",
     badge: "Event Coordinates",
-    cardTitle: "Diwali Mandi 2026",
-    stallNumber: "Diwali Bites Stall",
+    cardTitle: "Diwali Mandi 2026 • Stall No. 11",
+    stallNumber: "Stall No. 11",
     venueLabel: "Venue",
     venue: "PCET, S.B. Patil Architecture Building",
     dateLabel: "Date",
     date: "27th October 2026",
     timingLabel: "Timing",
     timing: "9 AM – 5 PM",
-    landmark: "Look for the warm golden fairy lights and the Diwali Bites banner!",
+    landmark: "Look for Stall No. 11 with the warm golden fairy lights and the Diwali Bites banner!",
     mapUrl: "https://maps.google.com/?q=S.B.+Patil+College+of+Architecture+Nigdi+Pune",
   },
   footer: {
     brandName: "Diwali Bites",
-    tagline: "Taste the Festive Magic at College Diwali Mandi 2026",
+    tagline: "Taste the Festive Magic at College Diwali Mandi 2026 • Stall No. 11",
     instagram: "", // intentionally empty string: renders only if non-empty
-    note: "Proudly run by passionate students for the annual College Diwali Mandi. All food is freshly prepared with utmost care, authentic spices, and hygienic standards.",
-    copyright: "© 2026 Diwali Bites. Wishing you a season of light, joy, and sweet memories!",
+    note: "Proudly run by passionate students at Stall No. 11 for the annual College Diwali Mandi. All food is freshly prepared with utmost care, authentic spices, and hygienic standards.",
+    copyright: "© 2026 Diwali Bites • Stall No. 11. Wishing you a season of light, joy, and sweet memories!",
   },
 };
 

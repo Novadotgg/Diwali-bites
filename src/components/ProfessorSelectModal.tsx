@@ -98,13 +98,13 @@ export function ProfessorSelectModal({
             <div className="text-center mb-5">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#6B1F4A]/80 border border-[#F5C842]/40 text-[#F5C842] text-xs font-bold uppercase tracking-wider mb-2">
                 <GraduationCap className="w-3.5 h-3.5 text-[#F5C842]" />
-                <span>Faculty Guest Invitations</span>
+                <span>Stall No. 11 • Faculty Guest Invitations</span>
               </div>
               <h2 className="font-['Rozha_One'] text-2xl sm:text-3xl text-gold-gradient">
                 Select Your Name
               </h2>
               <p className="font-['Manrope'] text-xs sm:text-sm text-[#FDF6E3]/80 mt-1">
-                Respected Professors, please select your name to unveil your personalized Diwali Bites invitation.
+                Respected Professors, please select your name to unveil your personalized invitation for Diwali Bites at <strong className="text-[#F5C842]">Stall No. 11</strong>.
               </p>
             </div>
 

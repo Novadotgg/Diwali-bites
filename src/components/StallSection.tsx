@@ -164,7 +164,7 @@ export function StallSection() {
                     3
                   </span>
                   <span className="font-semibold text-white">
-                    Spot the glowing <strong className="text-[#F5C842]">Diwali Bites</strong> banner with chilled mojitos and freshly tossed chaat!
+                    Spot the glowing <strong className="text-[#F5C842]">Stall No. 11 (Diwali Bites)</strong> banner with chilled mojitos and freshly tossed chaat!
                   </span>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export function StallSection() {
                   <span>Stall Location</span>
                 </div>
                 <p className="font-['Rozha_One'] text-base sm:text-lg text-gold-gradient leading-snug">
-                  Diwali Bites • Campus Courtyard
+                  Stall No. 11 • Campus Courtyard
                 </p>
               </div>
 

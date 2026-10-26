@@ -21,36 +21,36 @@ export const Route = createFileRoute('/invitation')({
   component: InvitationPage,
 })
 
-/** Generate an .ics calendar invite for download */
-function downloadCalendarInvite(professorName: string) {
-  const eventDetails = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Diwali Bites 2026//Faculty Special Invitation//EN',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    'UID:diwali-bites-2026-invitation@diwalibites.in',
-    'DTSTAMP:20261026T000000Z',
-    'DTSTART:20261027T033000Z', // 9:00 AM IST
-    'DTEND:20261027T113000Z',   // 5:00 PM IST
-    'SUMMARY:Diwali Bites Special Faculty Invitation',
-    `DESCRIPTION:Respected ${professorName}, you are cordially invited to Diwali Bites at PCET S.B. Patil Architecture Campus. Delicious chatpate food and refreshing mojitos await!`,
-    'LOCATION:PCET S.B. Patil Architecture Building, Diwali Mandi 2026',
-    'STATUS:CONFIRMED',
-    'END:VEVENT',
-    'END:VCALENDAR',
-  ].join('\r\n')
+/** Download invitation card image (.jpg) directly to user's device */
+async function downloadInvitationImage(imageSrc: string, professorName: string) {
+  const cleanName = professorName
+    .replace(/[^a-zA-Z0-9]/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_|_$/g, '')
+  const fileName = `Diwali_Bites_Stall_11_Invitation_${cleanName}.jpg`
 
-  const blob = new Blob([eventDetails], { type: 'text/calendar;charset=utf-8' })
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.setAttribute('download', `Diwali_Bites_Invitation_${professorName.replace(/\s+/g, '_')}.ics`)
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
-  URL.revokeObjectURL(url)
+  try {
+    const res = await fetch(imageSrc)
+    if (!res.ok) throw new Error('Fetch failed')
+    const blob = await res.blob()
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = fileName
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    setTimeout(() => URL.revokeObjectURL(url), 2000)
+  } catch {
+    // Direct link fallback
+    const link = document.createElement('a')
+    link.href = imageSrc
+    link.download = fileName
+    link.target = '_blank'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 }
 
 /* ========================================================================
@@ -62,6 +62,7 @@ function InvitationPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [dirCanScrollUp, setDirCanScrollUp] = useState(false)
   const [dirCanScrollDown, setDirCanScrollDown] = useState(false)
+  const [isDownloading, setIsDownloading] = useState(false)
 
   const directoryListRef = useRef<HTMLDivElement>(null)
 
@@ -122,11 +123,11 @@ function InvitationPage() {
   // Web Share API with clipboard fallback
   const handleShare = async () => {
     const shareTitle = selectedProfessor
-      ? `Diwali Bites Invitation — ${selectedProfessor.name}`
-      : 'Diwali Bites Faculty Invitation'
+      ? `Diwali Bites (Stall No. 11) — Invitation for ${selectedProfessor.name}`
+      : 'Diwali Bites (Stall No. 11) Faculty Invitation'
     const shareText = selectedProfessor
-      ? `Respected ${selectedProfessor.name}, you are cordially invited to Diwali Bites (PCET Architecture Campus) for Diwali Mandi 2026!`
-      : 'Special Faculty Invitation to Diwali Bites!'
+      ? `Respected ${selectedProfessor.name}, you are cordially invited to Diwali Bites at Stall No. 11 (PCET Architecture Campus) for Diwali Mandi 2026!`
+      : 'Special Faculty Invitation to Diwali Bites at Stall No. 11 (PCET Architecture Campus)!'
 
     if (navigator.share) {
       try {
@@ -148,11 +149,18 @@ function InvitationPage() {
     }
   }
 
-  const handleCalendar = () => {
+  const handleDownloadImage = async () => {
     if (selectedProfessor) {
-      downloadCalendarInvite(selectedProfessor.name)
-      setToastMessage('Calendar invite (.ics) downloaded!')
-      setTimeout(() => setToastMessage(null), 3000)
+      setIsDownloading(true)
+      try {
+        await downloadInvitationImage(cardImageSrc, selectedProfessor.name)
+        setToastMessage('Invitation image for Stall No. 11 downloaded (.jpg)!')
+      } catch {
+        setToastMessage('Invitation image download started!')
+      } finally {
+        setIsDownloading(false)
+        setTimeout(() => setToastMessage(null), 3500)
+      }
     }
   }
 
@@ -217,16 +225,35 @@ function InvitationPage() {
           <span>Home</span>
         </Link>
 
+        {/* Central Stall 11 Pill */}
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#6B1F4A]/90 border border-[#F5C842]/50 text-[#F5C842] text-xs font-black shadow-glow-sm">
+          <Store className="w-3.5 h-3.5 text-[#F5C842]" />
+          <span>Stall No. 11</span>
+        </div>
+
         <div className="flex items-center gap-2">
           {selectedProfessor && (
-            <button
-              onClick={handleResetProfessor}
-              aria-label="View all faculty names"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#4A0E2E]/90 border border-[#F2C230]/40 text-xs sm:text-sm font-semibold text-[#FFF4DC] hover:border-[#F2C230] hover:text-[#F2C230] transition-all backdrop-blur-md shadow-sm min-h-[42px]"
-            >
-              <GraduationCap className="w-3.5 h-3.5 text-[#F2C230]" />
-              <span>All Faculty Names</span>
-            </button>
+            <>
+              <button
+                onClick={handleResetProfessor}
+                aria-label="View all faculty names"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#4A0E2E]/90 border border-[#F2C230]/40 text-xs sm:text-sm font-semibold text-[#FFF4DC] hover:border-[#F2C230] hover:text-[#F2C230] transition-all backdrop-blur-md shadow-sm min-h-[42px]"
+              >
+                <GraduationCap className="w-3.5 h-3.5 text-[#F2C230]" />
+                <span>All Faculty Names</span>
+              </button>
+
+              <button
+                onClick={handleDownloadImage}
+                disabled={isDownloading}
+                aria-label="Download invitation image"
+                title="Download invitation image (.jpg)"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#4A0E2E]/90 border border-[#F2C230]/40 text-xs sm:text-sm font-semibold text-[#FFF4DC] hover:border-[#F2C230] hover:text-[#F2C230] transition-all backdrop-blur-md shadow-sm min-h-[42px] disabled:opacity-60"
+              >
+                <Download className="w-3.5 h-3.5 text-[#F2C230]" />
+                <span className="hidden sm:inline">{isDownloading ? 'Saving...' : 'Save Image'}</span>
+              </button>
+            </>
           )}
 
           <button
@@ -267,6 +294,16 @@ function InvitationPage() {
                - Rich marigold garlands, leaf dona chaat bowl, festive calligraphy
                ======================================================================== */
             <div className="w-full flex flex-col items-center">
+              {/* Stall 11 Festive Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-3 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#4A0E2E]/95 border-2 border-[#F2C230] text-[#F2C230] text-xs sm:text-sm font-black shadow-glow tracking-wider"
+              >
+                <Store className="w-4 h-4 text-[#F2C230]" />
+                <span>DIWALI BITES • STALL NO. 11</span>
+              </motion.div>
+
               <motion.div
                 key={selectedProfessor.id}
                 initial={{ opacity: 0, scale: 0.96, y: 18 }}
@@ -278,14 +315,27 @@ function InvitationPage() {
                 {/* 100% Authentic Hand-Rendered Poster Card */}
                 <img
                   src={cardImageSrc}
-                  alt={`Diwali Bites Official Invitation for ${selectedProfessor.name}`}
+                  alt={`Diwali Bites Official Invitation for ${selectedProfessor.name} - Stall No. 11`}
                   className="w-full h-auto block select-none pointer-events-none"
                   loading="eager"
                 />
               </motion.div>
 
+              {/* Venue & Stall 11 Details Ribbon */}
+              <div className="mt-3.5 w-full max-w-[540px] px-4 py-2.5 rounded-2xl bg-[#4A0E2E]/90 border border-[#F5C842]/50 shadow-md flex items-center justify-between text-xs text-[#FFF4DC] no-print">
+                <div className="flex items-center gap-2">
+                  <div className="px-2.5 py-1 rounded-lg bg-gold-gradient text-[#4A0E2E] font-black text-xs shadow-glow-sm">
+                    Stall No. 11
+                  </div>
+                  <span className="font-medium text-xs text-[#FFF4DC]/90">PCET Architecture Campus</span>
+                </div>
+                <div className="font-bold text-[#F5C842] text-xs">
+                  27th Oct 2026 • 9 AM - 5 PM
+                </div>
+              </div>
+
               {/* Action Buttons Below the Invitation Card */}
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-3 w-full max-w-md no-print">
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-3 w-full max-w-md no-print">
                 <button
                   type="button"
                   onClick={handleResetProfessor}
@@ -308,12 +358,13 @@ function InvitationPage() {
 
                 <button
                   type="button"
-                  onClick={handleCalendar}
-                  aria-label="Add to calendar"
-                  className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/95 hover:bg-white border border-[#D4A017] text-xs sm:text-sm font-bold text-[#4A0E2E] shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all min-h-[44px]"
+                  onClick={handleDownloadImage}
+                  disabled={isDownloading}
+                  aria-label="Download invitation image"
+                  className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/95 hover:bg-white border border-[#D4A017] text-xs sm:text-sm font-bold text-[#4A0E2E] shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all min-h-[44px] disabled:opacity-70"
                 >
                   <Download className="w-4 h-4 text-[#8A5A00]" />
-                  <span>Add to Calendar</span>
+                  <span>{isDownloading ? 'Saving Image...' : 'Download Image'}</span>
                 </button>
 
                 <Link
@@ -321,7 +372,7 @@ function InvitationPage() {
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gold-gradient text-[#4A0E2E] font-black text-xs sm:text-sm shadow-glow hover:scale-[1.02] active:scale-[0.98] transition-all min-h-[44px]"
                 >
                   <Store className="w-4 h-4" />
-                  <span>Explore Menu & Games</span>
+                  <span>Visit Stall No. 11 Menu & Games</span>
                 </Link>
               </div>
             </div>
@@ -330,7 +381,7 @@ function InvitationPage() {
                FACULTY DIRECTORY SELECTOR (Search & Quick Pick)
                - Opened directly when QR Code is scanned
                - Shows all faculty names in official order (1 to 27)
-               - Clicking any name opens their official personalized invitation card
+               - Highlights Stall No. 11 prominently
                ======================================================================== */
             <motion.div
               key="directory"
@@ -343,7 +394,7 @@ function InvitationPage() {
               <div className="text-center mb-5">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5C842]/30 border border-[#D4A017]/60 text-[#8A5A00] text-xs font-bold tracking-widest uppercase mb-2">
                   <GraduationCap className="w-4 h-4 text-[#8A5A00]" />
-                  <span>Official Faculty Directory</span>
+                  <span>Faculty Directory • Stall No. 11</span>
                 </div>
 
                 <h2 className="font-['Rozha_One'] text-2xl sm:text-4xl text-[#4A0E2E] tracking-tight mb-1">
@@ -351,7 +402,7 @@ function InvitationPage() {
                 </h2>
 
                 <p className="font-['Manrope'] text-xs sm:text-sm text-[#4A0E2E]/80 max-w-md mx-auto leading-relaxed">
-                  Respected Faculty & Guests, please find and select your name from the directory in order below to open your personalized Diwali Bites invitation.
+                  Respected Faculty & Guests, please find and select your name from the directory in order below to open your personalized invitation for Diwali Bites at <strong className="text-[#8A5A00] font-black">Stall No. 11</strong>.
                 </p>
               </div>
 
@@ -415,7 +466,7 @@ function InvitationPage() {
                 <span>
                   {searchQuery
                     ? `Matching ${filteredProfessors.length} of ${professorsList.length} Faculty Members`
-                    : `All ${professorsList.length} Faculty Members in Order`}
+                    : `All ${professorsList.length} Faculty Members in Order • Stall No. 11`}
                 </span>
                 <span className="text-[10px] text-[#4A0E2E]/60 uppercase tracking-wider">Tap to View</span>
               </div>
@@ -489,7 +540,7 @@ function InvitationPage() {
 
               {/* Selector Footer */}
               <div className="mt-4 pt-3 border-t border-[#D4A017]/25 text-center flex items-center justify-between text-[10px] text-[#8A5A00] font-bold">
-                <span className="uppercase tracking-widest">Diwali Bites 2026</span>
+                <span className="uppercase tracking-widest">Diwali Bites 2026 • Stall No. 11</span>
                 <span className="text-[#4A0E2E]/60 font-normal">PCET Architecture Campus</span>
               </div>
             </motion.div>
@@ -499,8 +550,9 @@ function InvitationPage() {
 
       {/* Footer */}
       <footer className="relative z-10 py-4 text-center text-[11px] text-[#FFF4DC]/60 no-print">
-        <p>Diwali Bites • PCET Architecture Campus • Celebrating with Light & Taste</p>
+        <p>Diwali Bites • Stall No. 11 • PCET Architecture Campus • Celebrating with Light & Taste</p>
       </footer>
     </div>
   )
 }
+

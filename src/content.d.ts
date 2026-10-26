@@ -19,6 +19,26 @@ export interface MenuItem {
   flavors?: string[];
 }
 
+export interface LuckyBallRule {
+  num: number;
+  title: string;
+  description: string;
+}
+
+export interface LuckyBallGameData {
+  title: string;
+  subtitle: string;
+  badge: string;
+  entryFee: string;
+  entryFeeLabel: string;
+  prize: string;
+  prizeDescription: string;
+  tagline: string;
+  videoUrl: string;
+  videoPoster: string;
+  rules: LuckyBallRule[];
+}
+
 export interface MysteryCard {
   id: number;
   title: string;
@@ -55,6 +75,7 @@ export interface SiteContent {
     teaserTitle: string;
     teaserDescription: string;
     hamperImage: string;
+    luckyBall?: LuckyBallGameData;
     mysteryCards: MysteryCard[];
   };
   stall: {

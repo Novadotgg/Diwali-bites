@@ -76,6 +76,9 @@ export function Navbar({
             <span className="font-['Rozha_One'] text-lg sm:text-xl text-gold-gradient tracking-wide block leading-none">
               {siteContent.brand.name}
             </span>
+            <span className="text-[10px] font-black tracking-widest text-[#F5C842]/90 uppercase block mt-0.5">
+              Stall No. 11
+            </span>
           </div>
         </button>
 
@@ -123,7 +126,7 @@ export function Navbar({
             onClick={() => onNavigate(siteContent.nav.cta.href)}
             className="px-3 py-1.5 rounded-full bg-gold-gradient text-[#4A0E2E] font-black text-xs shadow-glow"
           >
-            Find Stall
+            Stall No. 11
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

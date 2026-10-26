@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Gift, HelpCircle, Trophy, Flame, Store } from 'lucide-react'
+import { Trophy, Flame } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { siteContent } from '../content'
-import hamperImg from '../assets/hamper.jpeg'
+import { LuckyBallGame } from './LuckyBallGame'
 
 export function GamesSection() {
   const [diyasLit, setDiyasLit] = useState(0)
@@ -38,26 +38,6 @@ export function GamesSection() {
     }
   }
 
-  const handleCardHover = (e: React.MouseEvent<HTMLDivElement>) => {
-    const isFine = window.matchMedia('(pointer: fine)').matches
-    if (!isFine) return
-
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = (rect.left + rect.width / 2) / window.innerWidth
-    const y = (rect.top + rect.height / 2) / window.innerHeight
-
-    confetti({
-      particleCount: 10,
-      startVelocity: 12,
-      spread: 50,
-      origin: { x, y },
-      colors: ['#F5C842', '#FFE066', '#D4A017'],
-      ticks: 35,
-      scalar: 0.6,
-      disableForReducedMotion: true,
-    })
-  }
-
   return (
     <section
       id="games"
@@ -79,7 +59,7 @@ export function GamesSection() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-14">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -109,90 +89,8 @@ export function GamesSection() {
           </motion.p>
         </div>
 
-        {/* Feature Teaser Card: Blurred Hamper + Wobbling Gift Icon */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative rounded-3xl overflow-hidden border border-[#F5C842]/35 bg-[#3B0B24]/85 shadow-card backdrop-blur-md mb-12 max-w-4xl mx-auto group hover:border-[#F5C842]/60 transition-colors"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 items-center">
-            {/* Hamper Photo with subtle blur effect per design */}
-            <div className="relative aspect-video md:aspect-square overflow-hidden bg-black/40">
-              <img
-                src={hamperImg}
-                alt="Festive Gift Hamper Teaser"
-                className="w-full h-full object-cover filter blur-[2px] scale-105 group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-[#4A0E2E]/45" />
-
-              {/* Wobbling Gift Box Icon Overlay */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                <div className="w-20 h-20 rounded-full bg-gold-gradient flex items-center justify-center shadow-glow mb-3 wobble">
-                  <Gift className="w-10 h-10 text-[#4A0E2E]" />
-                </div>
-                <span className="px-3.5 py-1 rounded-full bg-[#4A0E2E]/95 text-[#F5C842] text-xs font-black border border-[#F5C842]/50 shadow-md">
-                  Celebration Gift Hampers
-                </span>
-              </div>
-            </div>
-
-            {/* Teaser Content */}
-            <div className="p-8 sm:p-10 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F5C842]/15 text-[#F5C842] text-xs font-bold w-fit mb-4 border border-[#F5C842]/30">
-                <Store className="w-3.5 h-3.5" />
-                <span>Diwali Mandi Special</span>
-              </div>
-
-              <h3 className="font-['Rozha_One'] text-2xl sm:text-3xl text-gold-gradient mb-3">
-                {siteContent.games.teaserTitle}
-              </h3>
-
-              <p className="text-xs sm:text-sm text-[#FDF6E3]/85 leading-relaxed font-['Manrope'] mb-6">
-                {siteContent.games.teaserDescription}
-              </p>
-
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 text-xs font-bold text-[#F5C842] bg-[#6B1F4A]/80 px-4 py-2.5 rounded-full border border-[#F5C842]/30">
-                  <span>Win on-the-spot prizes & festive treats!</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Three Mystery Game Cards with Hover Confetti */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-14">
-          {siteContent.games.mysteryCards.map((card, idx) => (
-            <motion.div
-              key={card.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
-              onMouseEnter={handleCardHover}
-              className="bg-[#3B0B24]/80 border border-[#F5C842]/25 rounded-2xl p-6 text-center shadow-card hover:border-[#F5C842]/70 hover:shadow-glow-sm hover:-translate-y-1 transition-all duration-300 group cursor-pointer relative overflow-hidden"
-            >
-              {/* Subtle top shine */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#F5C842]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-              <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-[#6B1F4A] border border-[#F5C842]/40 flex items-center justify-center text-[#F5C842] group-hover:scale-110 group-hover:bg-gold-gradient group-hover:text-[#4A0E2E] transition-all shadow-md">
-                <HelpCircle className="w-7 h-7" />
-              </div>
-              <h4 className="font-['Rozha_One'] text-lg text-[#FDF6E3] mb-1.5 group-hover:text-[#F5C842] transition-colors">
-                {card.title}
-              </h4>
-              <p className="font-['Manrope'] text-xs text-[#FDF6E3]/70 mb-3">{card.teaser}</p>
-              {card.prizeHint && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#F5C842]/15 text-[#F5C842] text-[11px] font-semibold">
-                  <Gift className="w-3 h-3 text-[#F5C842]" />
-                  <span>{card.prizeHint}</span>
-                </span>
-              )}
-            </motion.div>
-          ))}
-        </div>
+        {/* Featured Live Carnival Challenge: Lucky Ball Challenge */}
+        <LuckyBallGame />
 
         {/* Interactive "Tap to Light the Diya" Mini-Game */}
         <motion.div

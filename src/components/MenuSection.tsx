@@ -57,7 +57,7 @@ export function MenuSection({ onVisitStall }: MenuSectionProps) {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center px-3.5 py-1 rounded-full bg-[#4A0E2E]/10 border border-[#4A0E2E]/20 text-[#4A0E2E] text-xs font-black uppercase tracking-widest mb-3"
           >
-            <span>Handcrafted Feast</span>
+            <span>Handcrafted Feast • Stall No. 11</span>
           </motion.div>
 
           <motion.h2

@@ -327,14 +327,14 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
               <div className="flex-1 flex flex-col items-center sm:items-start justify-center gap-1.5">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#6B1F4A]/80 border border-[#F5C842]/40 text-[#F5C842] text-[10px] font-bold uppercase tracking-wider">
                   <GraduationCap className="w-3 h-3 text-[#F5C842]" />
-                  <span>Faculty Guest Pass</span>
+                  <span>Stall No. 11 • Faculty Guest Pass</span>
                 </div>
                 <div>
                   <h3 className="font-['Rozha_One'] text-lg sm:text-xl text-gold-gradient leading-tight">
-                    Faculty Invitation
+                    Faculty Invitation • Stall No. 11
                   </h3>
                   <p className="text-xs text-[#FDF6E3]/80 leading-snug mt-0.5">
-                    Click below to find your name or scan QR code
+                    Scan QR code or click below to find your invitation for Stall No. 11
                   </p>
                 </div>
                 <button
